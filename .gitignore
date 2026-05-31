@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+.env
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Deep Learning & Computer Vision (YOLO, Models, etc.)
+*.pt
+*.pth
+*.weights
+*.onnx
+*.h5
+*.ckpt
+
+# Weights and Logs
+runs/
+logs/
+wandb/
+output/
+results/
+artifacts/
+
+# Data
+data/
+datasets/
+images/
+labels/
+
+#foo
+*.lnk
