@@ -65,7 +65,7 @@ def main():
 
     dehazer = {
         "dcp": DarkChannelPrior(omega=args.omega),
-        "retinex": Retinex(),
+        "retinex": Retinex(num_workers=args.threads),
         "hybrid": HybridDehazer(omega=args.omega, fusion_weight=args.fusion_weight,
                                 num_workers=args.threads),
     }[args.method]
@@ -148,7 +148,7 @@ def main():
             print(">>> 切换到: DCP")
         elif key == ord("2"):
             current_method = "retinex"
-            dehazer = Retinex()
+            dehazer = Retinex(num_workers=args.threads)
             method_name = "Retinex (MSRCR)"
             print(">>> 切换到: Retinex")
         elif key == ord("3"):

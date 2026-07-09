@@ -11,7 +11,8 @@ class HybridDehazer:
                  retinex_scales: list = None, alpha: float = 125.0, beta: float = 46.0,
                  fusion_weight: float = 0.5, num_workers: int = 2):
         self.dcp = DarkChannelPrior(omega=omega, win_size=win_size, t0=t0)
-        self.retinex = Retinex(scales=retinex_scales, alpha=alpha, beta=beta)
+        self.retinex = Retinex(scales=retinex_scales, alpha=alpha, beta=beta,
+                               num_workers=num_workers)
         self.fusion_weight = fusion_weight
         self.num_workers = num_workers
 
