@@ -59,5 +59,10 @@ datasets/
 images/
 labels/
 
+# Demo outputs
+dehaze_result/
+dehaze_result.jpg
+awod_result.jpg
+
 #foo
 *.lnk
