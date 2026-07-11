@@ -21,11 +21,10 @@ class DarkChannelPrior:
         top_n = max(int(num_pixels * top_ratio), 1)
         flat_dark = dark.ravel()
         indices = np.argpartition(flat_dark, -top_n)[-top_n:]
-        brightest = np.zeros(3, dtype=np.float32)
         flat_img = img.reshape(-1, 3)
-        for i in range(3):
-            brightest[i] = np.max(flat_img[indices, i])
-        return brightest
+        candidates = flat_img[indices]
+        brightest_index = indices[np.argmax(candidates.sum(axis=1))]
+        return flat_img[brightest_index].astype(np.float32, copy=True)
 
     def _transmission(self, img: np.ndarray, A: np.ndarray) -> np.ndarray:
         norm = img.astype(np.float32) / A.reshape(1, 1, 3)
