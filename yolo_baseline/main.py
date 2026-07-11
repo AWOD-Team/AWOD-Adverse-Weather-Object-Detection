@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
-TARGET_CLASSES = {0: "person", 1: "bicycle", 2: "car", 5: "bus"}
+TARGET_CLASSES = {0: "person", 1: "bicycle", 2: "car", 3: "motorcycle", 5: "bus"}
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif"}
 
