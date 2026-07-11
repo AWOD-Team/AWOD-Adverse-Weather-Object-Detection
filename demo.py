@@ -20,12 +20,6 @@ def main():
     parser.add_argument("--output", type=str, default=None, help="Output image path")
     args = parser.parse_args()
 
-    img = cv2.imread(args.image)
-    if img is None:
-        print(f"[ERROR] Cannot read image: {args.image}")
-        sys.exit(1)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
     # prepare dehazer and pipeline (dehazer only created when requested)
     dehazer = HybridDehazer(fusion_weight=args.fusion_weight) if args.dehaze else None
 
@@ -52,8 +46,8 @@ def main():
         print(f"Detections: {len(pipeline.process(img_rgb)['detections'])} objects")
         if args.dehaze:
             print(f"Dehaze time: {timing['dehaze_ms']:.1f}ms | Detect time: {timing['detect_ms']:.1f}ms")
-            side_by_side = cv2.hconcat([raw_drawn, enhanced_drawn])
-            out_img_rgb = side_by_side
+            # side_by_side = cv2.hconcat([raw_drawn, enhanced_drawn])
+            out_img_rgb = enhanced_drawn
         else:
             print(f"Detect time: {timing['detect_ms']:.1f}ms")
             out_img_rgb = raw_drawn
@@ -64,7 +58,7 @@ def main():
         if out_arg:
             out_dir = Path(out_arg)
         else:
-            out_dir = Path.cwd()
+            out_dir = Path("output_dehaze" if args.dehaze else "output")
         out_dir.mkdir(parents=True, exist_ok=True)
 
         out_path = out_dir / image_path.name
