@@ -11,6 +11,14 @@ import numpy as np
 from core.dehaze import DarkChannelPrior, Retinex, HybridDehazer
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def resolve_repo_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else (PROJECT_ROOT / path)
+
+
 def put_text(img: np.ndarray, text: str, org: tuple, color=(0, 255, 0)):
     """在图像上叠加文字（带黑色描边，提高可读性）."""
     cv2.putText(img, text, org, cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 3)
@@ -77,7 +85,7 @@ def main():
     writer = None
     if args.output:
         fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-        writer = cv2.VideoWriter(args.output, fourcc, 20.0, (args.width * 2, args.width))
+        writer = cv2.VideoWriter(str(resolve_repo_path(args.output)), fourcc, 20.0, (args.width * 2, args.width))
 
     # ---- 主循环 ----
     fps_times = []  # 用于计算实时帧率
@@ -139,7 +147,7 @@ def main():
         elif key == ord("s"):
             stamp = time.strftime("%Y%m%d_%H%M%S")
             fname = f"screenshot_{stamp}.jpg"
-            cv2.imwrite(fname, side_by_side)
+            cv2.imwrite(str(PROJECT_ROOT / fname), side_by_side)
             print(f"截图已保存: {fname}")
         elif key == ord("1"):
             current_method = "dcp"

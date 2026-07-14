@@ -8,14 +8,22 @@ from core.pipeline import AWODPipeline
 from core.dehaze.hybrid_dehaze import HybridDehazer
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def resolve_repo_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else (PROJECT_ROOT / path)
+
+
 def main():
     parser = argparse.ArgumentParser(description="AWOD: Adverse Weather Object Detection")
-    parser.add_argument("--model", type=str, default="yolo11n.pt", help="YOLO model path or name")
+    parser.add_argument("--model", type=str, default=str(PROJECT_ROOT / "yolo11n.pt"), help="YOLO model path or name")
     parser.add_argument("--image", type=str, required=False, help="Path to input image")
     parser.add_argument("--fusion-weight", type=float, default=0.5,
                         help="DCP(1.0) vs Retinex(0.0) fusion weight")
     parser.add_argument("--dehaze", action="store_true", help="Enable dehazing (use only if provided)")
-    parser.add_argument("--input-dir", type=str, default=str(Path('..') / 'dataset_built' / 'testset'),
+    parser.add_argument("--input-dir", type=str, default=str(PROJECT_ROOT / 'dataset_built' / 'testset'),
                         help="Input directory (relative path by default)")
     parser.add_argument("--output", type=str, default=None, help="Output image path")
     args = parser.parse_args()
@@ -30,7 +38,7 @@ def main():
     )
 
     # decide between single image and input directory modes
-    input_dir = Path(args.input_dir)
+    input_dir = resolve_repo_path(args.input_dir)
     out_arg = args.output
 
     # helper to process one image path and save with same name
@@ -56,9 +64,9 @@ def main():
 
         # determine output directory and filename
         if out_arg:
-            out_dir = Path(out_arg)
+            out_dir = resolve_repo_path(out_arg)
         else:
-            out_dir = Path("output_dehaze" if args.dehaze else "output")
+            out_dir = PROJECT_ROOT / ("output_dehaze" if args.dehaze else "output")
         out_dir.mkdir(parents=True, exist_ok=True)
 
         out_path = out_dir / image_path.name
@@ -66,8 +74,8 @@ def main():
         print(f"Result saved to: {out_path}")
 
     # If input_dir exists and is a directory, process all images inside it
-    if input_dir and Path(input_dir).is_dir():
-        p = Path(input_dir)
+    if input_dir and input_dir.is_dir():
+        p = input_dir
         imgs = []
         for ext in ("*.jpg", "*.jpeg", "*.png", "*.bmp", "*.tif", "*.tiff"):
             imgs.extend(sorted(p.glob(ext)))

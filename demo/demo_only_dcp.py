@@ -10,6 +10,14 @@ import numpy as np
 from core.dehaze import DarkChannelPrior, Retinex, HybridDehazer
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def resolve_repo_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else (PROJECT_ROOT / path)
+
+
 def imread_rgb(path: str) -> np.ndarray:
     """读取图像并转为 RGB."""
     img = cv2.imread(path)
@@ -77,8 +85,8 @@ def main():
                     font, 0.7, (0, 255, 0), 2)
 
     # 保存结果
-    out_path = args.output or "dehaze_result.jpg"
-    cv2.imwrite(out_path, side_by_side_bgr)
+    out_path = resolve_repo_path(args.output) if args.output else PROJECT_ROOT / "dehaze_result.jpg"
+    cv2.imwrite(str(out_path), side_by_side_bgr)
     print(f"结果已保存至: {out_path}")
 
     # 显示
