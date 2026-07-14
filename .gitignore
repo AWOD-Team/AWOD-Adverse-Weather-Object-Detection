@@ -38,7 +38,7 @@ env/
 Thumbs.db
 
 # Deep Learning & Computer Vision (YOLO, Models, etc.)
-*.pt
+#*.pt
 *.pth
 *.weights
 *.onnx
@@ -62,7 +62,9 @@ labels/
 dehaze_result/
 dehaze_result.jpg
 awod_result.jpg
-/output/
-/output_dehaze/
+output/
+output_dehaze/
+
 #foo
 *.lnk
+数据集绝对路径
