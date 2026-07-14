@@ -1,0 +1,11 @@
+path: G:/leetcode/AWOD-Adverse-Weather-Object-Detection/train/dataset_rtts
+train: images/train
+val: images/val
+
+nc: 5
+names:
+  0: bicycle
+  1: bus
+  2: car
+  3: motorbike
+  4: person

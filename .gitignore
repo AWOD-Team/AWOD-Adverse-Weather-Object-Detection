@@ -38,7 +38,7 @@ env/
 Thumbs.db
 
 # Deep Learning & Computer Vision (YOLO, Models, etc.)
-#*.pt
+*.pt
 *.pth
 *.weights
 *.onnx
@@ -51,6 +51,12 @@ logs/
 wandb/
 results/
 artifacts/
+
+# Train folder (derivative / large files)
+train/awod_cuda/
+train/dataset_foggy/
+train/yolo11*.pt
+train/results_*.zip
 
 # Data
 data/
