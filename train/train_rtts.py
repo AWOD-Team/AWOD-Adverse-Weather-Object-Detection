@@ -110,7 +110,7 @@ def prepare_dataset():
 
 def main():
     parser = argparse.ArgumentParser(description="YOLOv11 RTTS 真实雾图训练")
-    parser.add_argument("--model", type=str, default="yolo11m.pt")
+    parser.add_argument("--model", type=str, default="yolo11s.pt")
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--batch", type=int, default=8)
@@ -119,7 +119,7 @@ def main():
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--device", type=str, default="0")
     parser.add_argument("--project", type=str, default="runs/train_rtts")
-    parser.add_argument("--name", type=str, default="yolo11m_rtts")
+    parser.add_argument("--name", type=str, default="yolo11s_rtts")
     parser.add_argument("--skip-prepare", action="store_true")
     args = parser.parse_args()
 
