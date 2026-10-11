@@ -18,6 +18,8 @@ import argparse
 import os
 import posixpath
 import sys
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import paramiko
@@ -104,6 +106,9 @@ def main() -> int:
                     help="upload dataset_built/RTTS (real fog, VOC xml) as "
                          "<remote>/rtts/{JPEGImages,Annotations}")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--jobs", type=int, default=8,
+                    help="并行 SFTP 连接数（默认 8）。大量小文件时串行会被"
+                         "往返延迟拖慢，并行可显著加速")
     args = ap.parse_args()
 
     if not PASSWORD:
@@ -193,35 +198,86 @@ def main() -> int:
     client.connect(HOST, port=PORT, username=USER, password=PASSWORD,
                    timeout=20, banner_timeout=30, auth_timeout=30,
                    look_for_keys=False, allow_agent=False)
-    sftp = client.open_sftp()
-    done = 0
-    uploaded = 0
-    try:
-        made: set[str] = set()
-        for local, rel in sorted(plan, key=lambda x: x[1]):
-            remote = posixpath.join(REMOTE_ROOT, rel)
-            rdir = posixpath.dirname(remote)
-            if rdir not in made:
-                sftp_makedirs(sftp, rdir)
-                made.add(rdir)
-            # skip when the remote copy already matches in size
+
+    plan.sort(key=lambda x: x[1])
+    tls = threading.local()
+    lock = threading.Lock()
+    state = {"done": 0, "uploaded": 0, "failed": 0}
+
+    def thread_sftp() -> paramiko.SFTPClient:
+        s = getattr(tls, "sftp", None)
+        if s is None:
+            s = client.open_sftp()
+            tls.sftp = s
+        return s
+
+    def drop_thread_sftp() -> None:
+        s = getattr(tls, "sftp", None)
+        if s is not None:
             try:
-                if sftp.stat(remote).st_size == local.stat().st_size:
-                    done += 1
-                    continue
-            except IOError:
+                s.close()
+            except Exception:
                 pass
-            sftp.put(str(local), remote)
-            uploaded += 1
-            done += 1
-            if uploaded % 25 == 0 or done == len(plan):
-                print(f"  [{done}/{len(plan)}] uploaded={uploaded}", flush=True)
+            tls.sftp = None
+
+    def work(item) -> None:
+        local, rel = item
+        remote = posixpath.join(REMOTE_ROOT, rel)
+        size = local.stat().st_size
+        for attempt in (1, 2, 3):
+            try:
+                sftp = thread_sftp()
+                try:
+                    # 已传完（大小一致）则跳过 —— 这就是断点续传的判据
+                    if sftp.stat(remote).st_size == size:
+                        with lock:
+                            state["done"] += 1
+                        return
+                except IOError:
+                    pass
+                sftp.put(str(local), remote)
+                with lock:
+                    state["done"] += 1
+                    state["uploaded"] += 1
+                    n = state["done"]
+                if n % 50 == 0 or n == len(plan):
+                    print(f"  [{n}/{len(plan)}] uploaded={state['uploaded']}"
+                          f" failed={state['failed']}", flush=True)
+                return
+            except Exception as exc:  # noqa: BLE001 - retry with a fresh channel
+                drop_thread_sftp()
+                if attempt == 3:
+                    with lock:
+                        state["done"] += 1
+                        state["failed"] += 1
+                    print(f"  [fail] {rel}: {exc}", file=sys.stderr, flush=True)
+
+    try:
+        # 目录先串行建好，避免多线程竞争
+        setup = client.open_sftp()
+        made: set[str] = set()
+        for _, rel in plan:
+            rdir = posixpath.dirname(posixpath.join(REMOTE_ROOT, rel))
+            if rdir and rdir not in made:
+                sftp_makedirs(setup, rdir)
+                made.add(rdir)
+        setup.close()
+
+        jobs = max(1, args.jobs)
+        if jobs == 1:
+            for item in plan:
+                work(item)
+        else:
+            with ThreadPoolExecutor(max_workers=jobs) as pool:
+                for _ in pool.map(work, plan):
+                    pass
     finally:
-        sftp.close()
+        drop_thread_sftp()
         client.close()
 
-    print(f"done: {done} files processed, {uploaded} transferred")
-    return 0
+    print(f"done: {state['done']} files processed, "
+          f"{state['uploaded']} transferred, {state['failed']} failed")
+    return 1 if state["failed"] else 0
 
 
 if __name__ == "__main__":
