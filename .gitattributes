@@ -1,0 +1,7 @@
+# 仓库内统一使用 LF，避免 Windows 检出的 CRLF 破坏 Linux 上的 shell 脚本
+*.sh text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.csv text eol=lf

@@ -1,4 +1,5 @@
 import argparse
+import os
 import shutil
 import sys
 import xml.etree.ElementTree as ET
@@ -12,7 +13,11 @@ DATASET_DIR = SCRIPT_DIR / "dataset_rtts"
 RANDOM_SEED = 42
 VAL_SPLIT = 0.2
 
-RTTS_ROOT = Path("G:/leetcode/dataset_built/RTTS")
+# 数据根目录: 默认本地 Windows 路径, 其他机器用 AWOD_DATASET_ROOT 覆盖
+# 例如 Linux: export AWOD_DATASET_ROOT=/data/awod/datasets
+DATASET_ROOT = Path(os.environ.get("AWOD_DATASET_ROOT",
+                                   "G:/leetcode/dataset_built"))
+RTTS_ROOT = DATASET_ROOT / "RTTS"
 CLASSES = ["bicycle", "bus", "car", "motorbike", "person"]
 
 
@@ -97,12 +102,13 @@ def prepare_dataset():
 
     yaml_path = SCRIPT_DIR / "dataset_rtts.yaml"
     yaml_path.write_text(
-        "path: G:/leetcode/AWOD-Adverse-Weather-Object-Detection/train/dataset_rtts\n"
+        f"path: {DATASET_DIR.as_posix()}\n"
         "train: images/train\n"
         "val: images/val\n"
         f"\nnc: {len(CLASSES)}\n"
         "names:\n" +
-        "\n".join(f"  {i}: {name}" for i, name in enumerate(CLASSES))
+        "\n".join(f"  {i}: {name}" for i, name in enumerate(CLASSES)) + "\n",
+        encoding="utf-8",
     )
     print(f"数据集已准备: {DATASET_DIR}")
     print(f"配置文件:     {yaml_path}")

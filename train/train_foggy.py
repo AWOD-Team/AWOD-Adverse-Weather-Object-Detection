@@ -1,4 +1,5 @@
 import argparse
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -11,16 +12,40 @@ DATASET_DIR = PROJECT_ROOT / "dataset_foggy"
 RANDOM_SEED = 42
 VAL_SPLIT = 0.2
 
+# 类别顺序必须与已有标注文件一致, 不可随意调整
+CLASS_NAMES = ["person", "bicycle", "car", "motorcycle",
+               "airplane", "bus", "train", "truck"]
+
+# 真实雾图数据根目录: 默认本地 Windows 路径, 其他机器用 AWOD_DATASET_ROOT 覆盖
+# 例如 Linux: export AWOD_DATASET_ROOT=/data/awod/datasets
+DATASET_ROOT = Path(os.environ.get("AWOD_DATASET_ROOT",
+                                   "G:/leetcode/dataset_built"))
+
 SOURCES = [
     {
-        "images": Path("G:/leetcode/dataset_built/images_1"),
-        "labels": Path("G:/leetcode/dataset_built/annonation/labels_1"),
+        "images": DATASET_ROOT / "images_1",
+        "labels": DATASET_ROOT / "annonation" / "labels_1",
     },
     {
-        "images": Path("G:/leetcode/dataset_built/images_2"),
-        "labels": Path("G:/leetcode/dataset_built/annonation/labels_2"),
+        "images": DATASET_ROOT / "images_2",
+        "labels": DATASET_ROOT / "annonation" / "labels_2",
     },
 ]
+
+
+def write_dataset_yaml() -> Path:
+    """生成数据集配置, 路径按当前机器解析 (避免硬编码盘符)"""
+    yaml_path = PROJECT_ROOT / "dataset_foggy.yaml"
+    yaml_path.write_text(
+        f"path: {DATASET_DIR.as_posix()}\n"
+        "train: images/train\n"
+        "val: images/val\n"
+        f"\nnc: {len(CLASS_NAMES)}\n"
+        "names:\n" +
+        "\n".join(f"  {i}: {n}" for i, n in enumerate(CLASS_NAMES)) + "\n",
+        encoding="utf-8",
+    )
+    return yaml_path
 
 
 def prepare_dataset():
@@ -87,10 +112,8 @@ def main():
             shutil.rmtree(DATASET_DIR)
         prepare_dataset()
 
-    yaml_path = PROJECT_ROOT / "dataset_foggy.yaml"
-    if not yaml_path.exists():
-        print(f"[ERROR] 未找到数据集配置: {yaml_path}")
-        sys.exit(1)
+    yaml_path = write_dataset_yaml()
+    print(f"数据集配置: {yaml_path}")
 
     print("\n" + "=" * 50)
     print("[2/2] 开始训练 YOLOv11 Large...")

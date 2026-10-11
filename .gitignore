@@ -74,3 +74,21 @@ output_dehaze/
 #foo
 *.lnk
 数据集绝对路径.txt
+
+# 本地笔记：含服务器明文密码，禁止入库
+正式任务计划
+正式任务计划.*
+
+# 本地打包 / 临时产物
+archive.zip
+*.tar.gz
+
+# 服务器运行环境（远端数据与输出，不入库）
+dataset/
+rtts/
+rtts_ds/
+folds/
+folds_rtts/
+selftest/
+weights/
+audit_*.csv

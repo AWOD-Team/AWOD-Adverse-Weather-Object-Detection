@@ -1,0 +1,228 @@
+#!/usr/bin/env python
+"""Upload the AWOD project code/weights to the training server over SFTP.
+
+Connection parameters come from the same environment variables as
+tools/ssh_remote.py (AWOD_SSH_HOST / AWOD_SSH_PORT / AWOD_SSH_USER /
+AWOD_SSH_PASSWORD).
+
+Usage:
+    python tools/sync_to_server.py                # code + small weights
+    python tools/sync_to_server.py --weights all   # also yolo11l/m
+    python tools/sync_to_server.py --dataset       # also push dataset_built
+    python tools/sync_to_server.py --dry-run
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+import posixpath
+import sys
+from pathlib import Path
+
+import paramiko
+
+HOST = os.environ.get("AWOD_SSH_HOST", "175.155.64.171")
+PORT = int(os.environ.get("AWOD_SSH_PORT", "24068"))
+USER = os.environ.get("AWOD_SSH_USER", "linux")
+PASSWORD = os.environ.get("AWOD_SSH_PASSWORD", "")
+
+REPO = Path(__file__).resolve().parent.parent
+REMOTE_ROOT = os.environ.get("AWOD_REMOTE_ROOT", "/data/awod")
+
+# directories copied verbatim (relative to the repo root)
+CODE_DIRS = ["core", "demo", "yolo_baseline", "tools"]
+CODE_FILES = [
+    "README.md",
+    "requirements.txt",
+    "第一次任务计划.md",
+    "第二次任务计划.md",
+    # "正式任务计划" is intentionally NOT uploaded: it contains the server
+    # password in plaintext and the server does not need a copy of it.
+    "train/train_foggy.py",
+    "train/train_rtts.py",
+    "train/requirements.txt",
+]
+SMALL_WEIGHTS = ["yolo11n.pt", "yolo11s.pt", "yolo26n.pt"]
+LARGE_WEIGHTS = ["yolo11l.pt", "yolo11m.pt", "train/yolo11l.pt", "train/yolo11m.pt"]
+
+SKIP_DIRS = {".git", ".venv", ".idea", "__pycache__", "runs", "dehaze_result",
+             "weighs", "dataset_rtts", "dataset_foggy", "awod_cuda"}
+SKIP_SUFFIX = {".pyc", ".zip", ".lnk"}
+
+DATASET_LOCAL = Path("G:/leetcode/dataset_built")
+
+# (image dir, label dir) pairs that make up the real fog dataset sent to the
+# server as <remote>/dataset/{images,labels}
+FOG_PAIRS = [("images_1", "annonation/labels_1"),
+             ("images_2", "annonation/labels_2")]
+
+
+def iter_local_files(paths, repo: Path, skip_dirs, skip_suffix):
+    """Yield (local_path, repo_relative_posix_path) for regular files."""
+    for rel in paths:
+        local = (repo / rel).resolve()
+        if local.is_file():
+            if local.suffix not in skip_suffix:
+                yield local, rel
+        elif local.is_dir():
+            for root, dirs, files in os.walk(local):
+                dirs[:] = [d for d in dirs if d not in skip_dirs]
+                for name in files:
+                    p = Path(root) / name
+                    if p.suffix in skip_suffix:
+                        continue
+                    r = p.resolve().relative_to(repo).as_posix()
+                    yield p, r
+        else:
+            print(f"[warn] missing locally, skipped: {local}")
+
+
+def sftp_makedirs(sftp, remote_dir: str) -> None:
+    parts = remote_dir.strip("/").split("/")
+    cur = ""
+    for part in parts:
+        cur += "/" + part
+        try:
+            sftp.stat(cur)
+        except IOError:
+            sftp.mkdir(cur)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--weights", choices=["none", "small", "all"], default="small")
+    ap.add_argument("--dataset", action="store_true",
+                    help="also upload G:/leetcode/dataset_built")
+    ap.add_argument("--dataset-smoke", type=int, metavar="N", default=0,
+                    help="upload only N images (+labels) per source, for a "
+                         "quick pipeline smoke test")
+    ap.add_argument("--fog-ds", action="store_true",
+                    help="upload images_1/images_2 + labels as "
+                         "<remote>/dataset/{images,labels} (flat YOLO layout)")
+    ap.add_argument("--rtts", action="store_true",
+                    help="upload dataset_built/RTTS (real fog, VOC xml) as "
+                         "<remote>/rtts/{JPEGImages,Annotations}")
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    if not PASSWORD:
+        print("[ssh] AWOD_SSH_PASSWORD is not set", file=sys.stderr)
+        return 2
+
+    targets = list(CODE_DIRS) + list(CODE_FILES)
+    if args.weights == "small":
+        targets += SMALL_WEIGHTS
+    elif args.weights == "all":
+        targets += SMALL_WEIGHTS + LARGE_WEIGHTS
+
+    plan = list(iter_local_files(targets, REPO, SKIP_DIRS, SKIP_SUFFIX))
+    if args.fog_ds:
+        if not DATASET_LOCAL.is_dir():
+            print(f"[ssh] dataset root not found: {DATASET_LOCAL}", file=sys.stderr)
+            return 2
+        seen: dict[str, str] = {}
+        for img_dir, lbl_dir in FOG_PAIRS:
+            for p in sorted((DATASET_LOCAL / img_dir).iterdir()):
+                if p.suffix.lower() not in (".jpg", ".jpeg", ".png"):
+                    continue
+                if p.name in seen:
+                    print(f"[ssh] duplicate image name across sources: {p.name}"
+                          f" (already from {seen[p.name]})", file=sys.stderr)
+                    return 2
+                seen[p.name] = img_dir
+                plan.append((p, f"dataset/images/{p.name}"))
+                lp = DATASET_LOCAL / lbl_dir / f"{p.stem}.txt"
+                if lp.is_file():
+                    plan.append((lp, f"dataset/labels/{lp.name}"))
+                else:
+                    print(f"[warn] no label for {p.name}")
+        print(f"[fog-ds] images={len(seen)}")
+    if args.rtts:
+        src = DATASET_LOCAL / "RTTS"
+        if not src.is_dir():
+            print(f"[ssh] RTTS not found: {src}", file=sys.stderr)
+            return 2
+        for root_dir, dirs, files in os.walk(src):
+            for name in files:
+                p = Path(root_dir) / name
+                if p.suffix == ".pyc":
+                    continue
+                rel = p.resolve().relative_to(src.resolve()).as_posix()
+                plan.append((p, f"rtts/{rel}"))
+    if args.dataset_smoke:
+        if not DATASET_LOCAL.is_dir():
+            print(f"[ssh] dataset root not found: {DATASET_LOCAL}", file=sys.stderr)
+            return 2
+        for img_dir, lbl_dir in [("images_1", "annonation/labels_1"),
+                                 ("images_2", "annonation/labels_2")]:
+            imgs = sorted(p for p in (DATASET_LOCAL / img_dir).iterdir()
+                          if p.suffix.lower() in (".jpg", ".jpeg", ".png"))
+            for p in imgs[:args.dataset_smoke]:
+                plan.append((p, f"datasets/{img_dir}/{p.name}"))
+                lp = DATASET_LOCAL / lbl_dir / f"{p.stem}.txt"
+                if lp.is_file():
+                    plan.append((lp, f"datasets/{lbl_dir}/{lp.name}"))
+                else:
+                    print(f"[warn] no label for {p.name}")
+    if args.dataset:
+        if not DATASET_LOCAL.is_dir():
+            print(f"[ssh] dataset root not found: {DATASET_LOCAL}", file=sys.stderr)
+            return 2
+        for root, dirs, files in os.walk(DATASET_LOCAL):
+            dirs[:] = [d for d in dirs if d not in SKIP_DIRS
+                       and d != "venv_labelimg"]
+            for name in files:
+                p = Path(root) / name
+                if p.suffix == ".pyc":
+                    continue
+                r = "datasets/" + p.resolve().relative_to(
+                    DATASET_LOCAL.resolve()).as_posix()
+                plan.append((p, r))
+
+    total = sum(p.stat().st_size for p, _ in plan)
+    print(f"files={len(plan)}  total={total / 1024 / 1024:.1f} MB  "
+          f"-> {REMOTE_ROOT}")
+    if args.dry_run:
+        for _, r in sorted(plan, key=lambda x: x[1]):
+            print("  ", r)
+        return 0
+
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(HOST, port=PORT, username=USER, password=PASSWORD,
+                   timeout=20, banner_timeout=30, auth_timeout=30,
+                   look_for_keys=False, allow_agent=False)
+    sftp = client.open_sftp()
+    done = 0
+    uploaded = 0
+    try:
+        made: set[str] = set()
+        for local, rel in sorted(plan, key=lambda x: x[1]):
+            remote = posixpath.join(REMOTE_ROOT, rel)
+            rdir = posixpath.dirname(remote)
+            if rdir not in made:
+                sftp_makedirs(sftp, rdir)
+                made.add(rdir)
+            # skip when the remote copy already matches in size
+            try:
+                if sftp.stat(remote).st_size == local.stat().st_size:
+                    done += 1
+                    continue
+            except IOError:
+                pass
+            sftp.put(str(local), remote)
+            uploaded += 1
+            done += 1
+            if uploaded % 25 == 0 or done == len(plan):
+                print(f"  [{done}/{len(plan)}] uploaded={uploaded}", flush=True)
+    finally:
+        sftp.close()
+        client.close()
+
+    print(f"done: {done} files processed, {uploaded} transferred")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
