@@ -1,0 +1,50 @@
+{
+  "source_dataset": "/data/awod_data/processed/rtts_2cls_v1",
+  "source_images": 4322,
+  "mandatory_keep": 500,
+  "manual_excludes": 1549,
+  "excluded_video_sources": [
+    "hv11",
+    "hv17",
+    "hv26",
+    "hv34",
+    "hv39",
+    "hv4",
+    "hv40",
+    "hv47"
+  ],
+  "eligible_before_dedup": 2715,
+  "candidate_keep": 2419,
+  "nonmandatory_candidates": 1919,
+  "auto_excluded": 1903,
+  "exclusion_reasons": {
+    "manual_semantic_exclusion": 1422,
+    "near_duplicate_of": 42,
+    "excluded_video_source": 185,
+    "adjacent_video_frame_of": 254
+  },
+  "video_min_frame_gap": 30,
+  "duplicate_scan": {
+    "n_images": 4322,
+    "n_pairs_verified": 71,
+    "n_pairs_within_thresh": 71,
+    "n_multi_image_clusters": 18,
+    "largest_clusters": [
+      19,
+      10,
+      4,
+      3,
+      3,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "contact_sheets": 32,
+  "output": "/data/awod_data/processed/rtts_2cls_clean_v1",
+  "link_modes_image_and_label": {
+    "hardlink": 4838
+  }
+}

@@ -32,6 +32,10 @@ def parse_args() -> argparse.Namespace:
         "--manual-exclude", type=Path, action="append", default=[],
         help="Manual exclusion list; repeat the option to merge multiple lists.",
     )
+    parser.add_argument(
+        "--exclude-video-source", action="append", default=[],
+        help="Exclude every frame from a video source such as hv11; repeat as needed.",
+    )
     parser.add_argument("--dup-json", type=Path)
     parser.add_argument("--review-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path,
@@ -242,6 +246,7 @@ def main() -> int:
     manual_excludes: set[str] = set()
     for exclusion_path in args.manual_exclude:
         manual_excludes.update(read_names(exclusion_path))
+    excluded_video_sources = {source.lower() for source in args.exclude_video_source}
     conflict = mandatory & manual_excludes
     if conflict:
         raise ValueError(f"Mandatory/exclusion conflict: {sorted(conflict)[:20]}")
@@ -266,7 +271,14 @@ def main() -> int:
             "mandatory": name in mandatory,
         }
         reason = ""
-        if name in manual_excludes:
+        parsed_video = video_frame(name)
+        if (
+            not record["mandatory"]
+            and parsed_video
+            and parsed_video[0].lower() in excluded_video_sources
+        ):
+            reason = f"excluded_video_source:{parsed_video[0].lower()}"
+        elif name in manual_excludes:
             reason = "manual_semantic_exclusion"
         elif not label.is_file():
             reason = "missing_label"
@@ -328,9 +340,10 @@ def main() -> int:
         "source_images": len(image_paths),
         "mandatory_keep": len(mandatory),
         "manual_excludes": len(manual_excludes),
+        "excluded_video_sources": sorted(excluded_video_sources),
         "eligible_before_dedup": len(eligible),
         "candidate_keep": len(candidates),
-        "remaining_visual_review": len(to_review),
+        "nonmandatory_candidates": len(to_review),
         "auto_excluded": len(rejected),
         "exclusion_reasons": dict(Counter(r["reason"].split(":", 1)[0] for r in rejected)),
         "video_min_frame_gap": args.video_min_frame_gap,
