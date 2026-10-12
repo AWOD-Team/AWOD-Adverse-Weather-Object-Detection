@@ -1,0 +1,186 @@
+{
+  "rtts": {
+    "kind": "voc",
+    "images": 4322,
+    "annotations": 4322,
+    "paired": 4322,
+    "only_image": 0,
+    "only_annotation": 0,
+    "only_image_examples": [],
+    "only_annotation_examples": [],
+    "boxes": 41203,
+    "classes": {
+      "car": 25317,
+      "person": 11366,
+      "bus": 2590,
+      "motorbike": 1232,
+      "bicycle": 698
+    },
+    "difficult": 11604,
+    "degenerate_or_bad_boxes": 0,
+    "boxes_outside_image": 5,
+    "empty_annotation_images": 0,
+    "small_boxes_lt_32x32": 15270,
+    "small_ratio": 0.3706,
+    "exact_duplicate_images": 0,
+    "near_duplicate_pairs_dhash6": 1567,
+    "distinct_sizes": 2656,
+    "top_sizes": [
+      {
+        "w": 896,
+        "h": 504,
+        "n": 383
+      },
+      {
+        "w": 540,
+        "h": 360,
+        "n": 80
+      },
+      {
+        "w": 852,
+        "h": 480,
+        "n": 73
+      },
+      {
+        "w": 480,
+        "h": 360,
+        "n": 66
+      },
+      {
+        "w": 640,
+        "h": 352,
+        "n": 64
+      }
+    ]
+  },
+  "dawn": {
+    "kind": "yolo",
+    "images": 1027,
+    "labels": 1027,
+    "paired": 1027,
+    "only_image": 0,
+    "only_label": 0,
+    "boxes": 7845,
+    "classes": {
+      "vehicle": 7368,
+      "person": 477
+    },
+    "invalid_boxes": 0,
+    "empty_label_images": 1,
+    "small_boxes_lt_32x32": 971,
+    "small_ratio": 0.1238,
+    "exact_duplicate_images": 22,
+    "near_duplicate_pairs_dhash6": 260,
+    "distinct_sizes": 403,
+    "top_sizes": [
+      {
+        "w": 1280,
+        "h": 720,
+        "n": 122
+      },
+      {
+        "w": 1280,
+        "h": 853,
+        "n": 66
+      },
+      {
+        "w": 1280,
+        "h": 960,
+        "n": 48
+      },
+      {
+        "w": 1280,
+        "h": 721,
+        "n": 34
+      },
+      {
+        "w": 1280,
+        "h": 854,
+        "n": 30
+      }
+    ],
+    "subsets": {
+      "fog": 300,
+      "fog_examples": [
+        "images/foggy-003.jpg",
+        "images/foggy-004.jpg",
+        "images/foggy-006.jpg"
+      ],
+      "rain": 200,
+      "rain_examples": [
+        "images/rain_storm-001.jpg",
+        "images/rain_storm-002.jpg",
+        "images/rain_storm-004.jpg"
+      ],
+      "sand": 323,
+      "sand_examples": [
+        "images/dusttornado-002.jpg",
+        "images/dusttornado-003.jpg",
+        "images/dusttornado-004.jpg"
+      ],
+      "snow": 204,
+      "snow_examples": [
+        "images/snow_storm-001.jpg",
+        "images/snow_storm-002.jpg",
+        "images/snow_storm-003.jpg"
+      ],
+      "other": 196,
+      "other_examples": [
+        "images/haze-002.jpg",
+        "images/haze-004.jpg",
+        "images/haze-005.jpg"
+      ]
+    }
+  },
+  "ots417": {
+    "kind": "yolo",
+    "images": 417,
+    "labels": 417,
+    "paired": 417,
+    "only_image": 0,
+    "only_label": 0,
+    "boxes": 5837,
+    "classes": {
+      "car": 4432,
+      "person": 777,
+      "bus": 341,
+      "truck": 106,
+      "motorcycle": 96,
+      "bicycle": 85
+    },
+    "invalid_boxes": 0,
+    "empty_label_images": 0,
+    "small_boxes_lt_32x32": 3414,
+    "small_ratio": 0.5849,
+    "exact_duplicate_images": 1,
+    "near_duplicate_pairs_dhash6": 1,
+    "distinct_sizes": 89,
+    "top_sizes": [
+      {
+        "w": 550,
+        "h": 413,
+        "n": 256
+      },
+      {
+        "w": 550,
+        "h": 411,
+        "n": 38
+      },
+      {
+        "w": 550,
+        "h": 309,
+        "n": 18
+      },
+      {
+        "w": 550,
+        "h": 733,
+        "n": 6
+      },
+      {
+        "w": 550,
+        "h": 412,
+        "n": 6
+      }
+    ]
+  }
+}

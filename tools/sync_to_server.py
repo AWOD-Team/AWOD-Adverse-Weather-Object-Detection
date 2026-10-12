@@ -33,7 +33,7 @@ REPO = Path(__file__).resolve().parent.parent
 REMOTE_ROOT = os.environ.get("AWOD_REMOTE_ROOT", "/data/awod")
 
 # directories copied verbatim (relative to the repo root)
-CODE_DIRS = ["core", "demo", "yolo_baseline", "tools"]
+CODE_DIRS = ["core", "demo", "yolo_baseline", "tools", "scripts"]
 CODE_FILES = [
     "README.md",
     "requirements.txt",
