@@ -9,8 +9,10 @@ from core.dehaze.retinex import Retinex
 class HybridDehazer:
     def __init__(self, omega: float = 0.95, win_size: int = 15, t0: float = 0.1,
                  retinex_scales: list = None, alpha: float = 125.0, beta: float = 46.0,
-                 fusion_weight: float = 0.5, num_workers: int = 2):
-        self.dcp = DarkChannelPrior(omega=omega, win_size=win_size, t0=t0)
+                 fusion_weight: float = 0.5, num_workers: int = 2,
+                 dcp_refinement: str = "guided"):
+        self.dcp = DarkChannelPrior(omega=omega, win_size=win_size, t0=t0,
+                                    refinement=dcp_refinement)
         self.retinex = Retinex(scales=retinex_scales, alpha=alpha, beta=beta,
                                num_workers=num_workers)
         self.fusion_weight = fusion_weight

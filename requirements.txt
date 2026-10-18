@@ -3,6 +3,7 @@ torch>=2.0.0
 torchvision>=0.15.0
 opencv-python>=4.8.0
 numpy>=1.24.0
+scipy>=1.10.0  # needed only for DCP soft_matting mode
 matplotlib
 albumentations
 tqdm
