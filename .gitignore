@@ -92,3 +92,7 @@ folds_rtts/
 selftest/
 weights/
 audit_*.csv
+
+# 交付物必须入库（服务器到期后这是唯一留存），权重文件例外放行
+!deliverables/
+!deliverables/**
