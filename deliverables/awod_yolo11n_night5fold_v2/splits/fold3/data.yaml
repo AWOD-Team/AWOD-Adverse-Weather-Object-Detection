@@ -1,0 +1,7 @@
+path: /data/awod_data/processed/night_2cls_clean_v2
+train: /data/awod_data/processed/night_2cls_clean_v2/folds5_grouped_v1/fold3/train.txt
+val: /data/awod_data/processed/night_2cls_clean_v2/folds5_grouped_v1/fold3/val.txt
+test: /data/awod_data/processed/night_2cls_clean_v2/folds5_grouped_v1/fold3/test.txt
+names:
+  0: vehicle
+  1: person
