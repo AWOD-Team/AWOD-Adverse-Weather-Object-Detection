@@ -38,9 +38,17 @@ for k in range(1, 6):
         "per_class_map50_95": {},
         "n_images": sum(1 for _ in open(os.path.join(FOLDS, f"fold{k}", "test.txt"))),
     }
-    maps = list(getattr(b, "maps", []) or [])
-    ap50 = list(getattr(b, "ap50", []) or [])
-    idx = list(getattr(b, "ap_class_index", []) or [])
+    def _l(x):
+        if x is None:
+            return []
+        try:
+            return list(x)
+        except TypeError:
+            return []
+
+    maps = _l(getattr(b, "maps", None))
+    ap50 = _l(getattr(b, "ap50", None))
+    idx = _l(getattr(b, "ap_class_index", None))
     for j, ci in enumerate(idx):
         name = names.get(int(ci), str(ci))
         if j < len(maps):
