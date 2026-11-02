@@ -1,0 +1,10 @@
+AWOD five-fold baseline - environment
+generated: 2026-10-14 11:56:58
+deliverer: 于乘骁
+os: Ubuntu 22.04.4 LTS
+gpu: NVIDIA GeForce RTX 4090
+conda env: torch2.4_cuda12.1
+python 3.10.14
+torch 2.4.1
+cuda 12.1
+ultralytics 8.4.175

@@ -1,0 +1,334 @@
+{
+  "seed": 42,
+  "images": 2681,
+  "groups": 2468,
+  "video_sources": 45,
+  "video_images": 240,
+  "phash_distance_limit": 4,
+  "phash_pairs": [
+    {
+      "left": "rtts__GSGL_Baidu_1259.png",
+      "right": "rtts__GSGL_Baidu_144.png",
+      "distance": 4
+    },
+    {
+      "left": "rtts__GSGL_Baidu_476.png",
+      "right": "rtts__GSGL_Baidu_610.png",
+      "distance": 4
+    },
+    {
+      "left": "rtts__GSGL_Baidu_870.png",
+      "right": "rtts__TS_Bing_697.png",
+      "distance": 4
+    },
+    {
+      "left": "rtts__FogDr_Bing_535.png",
+      "right": "dawn__foggy-050.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__HazeDr_Google_381.png",
+      "right": "dawn__foggy-055.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__FogDr_Bing_557.png",
+      "right": "dawn__foggy-068.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__FogDr_Google_24.png",
+      "right": "dawn__foggy-085.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__HazyDr_Google_289.png",
+      "right": "dawn__haze-010.jpg",
+      "distance": 2
+    },
+    {
+      "left": "rtts__FogDr_Google_040.png",
+      "right": "dawn__haze-011.jpg",
+      "distance": 2
+    },
+    {
+      "left": "rtts__FogDr_Google_116.png",
+      "right": "dawn__haze-021.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__FogDr_Google_003.png",
+      "right": "dawn__haze-050.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__FogDr_Google_337.png",
+      "right": "dawn__haze-066.jpg",
+      "distance": 2
+    },
+    {
+      "left": "rtts__AM_Google_228.png",
+      "right": "dawn__haze-080.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__SJZ_Google_455.png",
+      "right": "dawn__haze-092.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__HazeDr_Google_568.png",
+      "right": "dawn__haze-106.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__HazeDr_Bing_647.png",
+      "right": "dawn__haze-110.jpg",
+      "distance": 2
+    },
+    {
+      "left": "rtts__SGP_Bing_082.png",
+      "right": "dawn__haze-111.jpg",
+      "distance": 0
+    },
+    {
+      "left": "rtts__FogDr_Google_765.png",
+      "right": "dawn__mist-019.jpg",
+      "distance": 0
+    }
+  ],
+  "outer_balance_score": 0.5167,
+  "folds": [
+    {
+      "fold": 1,
+      "inner_balance_score": 0.0983,
+      "train": {
+        "images": 1877,
+        "rtts": 1694,
+        "dawn": 183,
+        "person_images": 968,
+        "vehicle_boxes": 18608,
+        "person_boxes": 3758,
+        "weather": {
+          "fog": 1694,
+          "foggy": 71,
+          "haze": 60,
+          "mist": 52
+        }
+      },
+      "val": {
+        "images": 268,
+        "rtts": 242,
+        "dawn": 26,
+        "person_images": 139,
+        "vehicle_boxes": 2659,
+        "person_boxes": 537,
+        "weather": {
+          "fog": 242,
+          "foggy": 10,
+          "haze": 9,
+          "mist": 7
+        }
+      },
+      "test": {
+        "images": 536,
+        "rtts": 483,
+        "dawn": 53,
+        "person_images": 276,
+        "vehicle_boxes": 5323,
+        "person_boxes": 1075,
+        "weather": {
+          "fog": 483,
+          "foggy": 21,
+          "haze": 17,
+          "mist": 15
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "inner_balance_score": 0.1126,
+      "train": {
+        "images": 1876,
+        "rtts": 1692,
+        "dawn": 184,
+        "person_images": 968,
+        "vehicle_boxes": 18605,
+        "person_boxes": 3761,
+        "weather": {
+          "fog": 1692,
+          "foggy": 72,
+          "haze": 60,
+          "mist": 52
+        }
+      },
+      "val": {
+        "images": 268,
+        "rtts": 242,
+        "dawn": 26,
+        "person_images": 138,
+        "vehicle_boxes": 2658,
+        "person_boxes": 536,
+        "weather": {
+          "fog": 242,
+          "foggy": 10,
+          "haze": 9,
+          "mist": 7
+        }
+      },
+      "test": {
+        "images": 537,
+        "rtts": 485,
+        "dawn": 52,
+        "person_images": 277,
+        "vehicle_boxes": 5327,
+        "person_boxes": 1073,
+        "weather": {
+          "fog": 485,
+          "foggy": 20,
+          "haze": 17,
+          "mist": 15
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "inner_balance_score": 0.141,
+      "train": {
+        "images": 1877,
+        "rtts": 1693,
+        "dawn": 184,
+        "person_images": 968,
+        "vehicle_boxes": 18617,
+        "person_boxes": 3763,
+        "weather": {
+          "fog": 1693,
+          "foggy": 71,
+          "haze": 60,
+          "mist": 53
+        }
+      },
+      "val": {
+        "images": 268,
+        "rtts": 242,
+        "dawn": 26,
+        "person_images": 138,
+        "vehicle_boxes": 2656,
+        "person_boxes": 536,
+        "weather": {
+          "fog": 242,
+          "foggy": 10,
+          "haze": 9,
+          "mist": 7
+        }
+      },
+      "test": {
+        "images": 536,
+        "rtts": 484,
+        "dawn": 52,
+        "person_images": 277,
+        "vehicle_boxes": 5317,
+        "person_boxes": 1071,
+        "weather": {
+          "fog": 484,
+          "foggy": 21,
+          "haze": 17,
+          "mist": 14
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "inner_balance_score": 0.1172,
+      "train": {
+        "images": 1877,
+        "rtts": 1693,
+        "dawn": 184,
+        "person_images": 968,
+        "vehicle_boxes": 18622,
+        "person_boxes": 3759,
+        "weather": {
+          "fog": 1693,
+          "foggy": 72,
+          "haze": 60,
+          "mist": 52
+        }
+      },
+      "val": {
+        "images": 268,
+        "rtts": 242,
+        "dawn": 26,
+        "person_images": 138,
+        "vehicle_boxes": 2660,
+        "person_boxes": 535,
+        "weather": {
+          "fog": 242,
+          "foggy": 10,
+          "haze": 9,
+          "mist": 7
+        }
+      },
+      "test": {
+        "images": 536,
+        "rtts": 484,
+        "dawn": 52,
+        "person_images": 277,
+        "vehicle_boxes": 5308,
+        "person_boxes": 1076,
+        "weather": {
+          "fog": 484,
+          "foggy": 20,
+          "haze": 17,
+          "mist": 15
+        }
+      }
+    },
+    {
+      "fold": 5,
+      "inner_balance_score": 0.1372,
+      "train": {
+        "images": 1877,
+        "rtts": 1694,
+        "dawn": 183,
+        "person_images": 969,
+        "vehicle_boxes": 18619,
+        "person_boxes": 3758,
+        "weather": {
+          "fog": 1694,
+          "foggy": 72,
+          "haze": 59,
+          "mist": 52
+        }
+      },
+      "val": {
+        "images": 268,
+        "rtts": 242,
+        "dawn": 26,
+        "person_images": 138,
+        "vehicle_boxes": 2656,
+        "person_boxes": 537,
+        "weather": {
+          "fog": 242,
+          "foggy": 10,
+          "haze": 9,
+          "mist": 7
+        }
+      },
+      "test": {
+        "images": 536,
+        "rtts": 483,
+        "dawn": 53,
+        "person_images": 276,
+        "vehicle_boxes": 5315,
+        "person_boxes": 1075,
+        "weather": {
+          "fog": 483,
+          "foggy": 20,
+          "haze": 18,
+          "mist": 15
+        }
+      }
+    }
+  ],
+  "group_leaks": 0
+}

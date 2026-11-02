@@ -1,0 +1,114 @@
+{
+  "per_fold": [
+    {
+      "fold": 1,
+      "images": 536,
+      "precision": 0.8701,
+      "recall": 0.7491,
+      "map50": 0.837,
+      "map50_95": 0.5536,
+      "vehicle_map50": 0.8841,
+      "vehicle_map50_95": 0.6042,
+      "person_map50": 0.7898,
+      "person_map50_95": 0.5031
+    },
+    {
+      "fold": 2,
+      "images": 537,
+      "precision": 0.8707,
+      "recall": 0.7291,
+      "map50": 0.8268,
+      "map50_95": 0.5486,
+      "vehicle_map50": 0.8754,
+      "vehicle_map50_95": 0.6019,
+      "person_map50": 0.7782,
+      "person_map50_95": 0.4953
+    },
+    {
+      "fold": 3,
+      "images": 536,
+      "precision": 0.8656,
+      "recall": 0.7147,
+      "map50": 0.8149,
+      "map50_95": 0.5366,
+      "vehicle_map50": 0.8794,
+      "vehicle_map50_95": 0.6009,
+      "person_map50": 0.7504,
+      "person_map50_95": 0.4724
+    },
+    {
+      "fold": 4,
+      "images": 536,
+      "precision": 0.8615,
+      "recall": 0.7054,
+      "map50": 0.8027,
+      "map50_95": 0.5267,
+      "vehicle_map50": 0.871,
+      "vehicle_map50_95": 0.59,
+      "person_map50": 0.7344,
+      "person_map50_95": 0.4633
+    },
+    {
+      "fold": 5,
+      "images": 536,
+      "precision": 0.8846,
+      "recall": 0.7517,
+      "map50": 0.8385,
+      "map50_95": 0.5606,
+      "vehicle_map50": 0.8865,
+      "vehicle_map50_95": 0.6118,
+      "person_map50": 0.7905,
+      "person_map50_95": 0.5094
+    }
+  ],
+  "summary": {
+    "precision": {
+      "mean": 0.8705,
+      "std": 0.0087,
+      "min": 0.8615,
+      "max": 0.8846
+    },
+    "recall": {
+      "mean": 0.73,
+      "std": 0.0205,
+      "min": 0.7054,
+      "max": 0.7517
+    },
+    "map50": {
+      "mean": 0.824,
+      "std": 0.0152,
+      "min": 0.8027,
+      "max": 0.8385
+    },
+    "map50_95": {
+      "mean": 0.5452,
+      "std": 0.0136,
+      "min": 0.5267,
+      "max": 0.5606
+    },
+    "vehicle_map50": {
+      "mean": 0.8793,
+      "std": 0.0063,
+      "min": 0.871,
+      "max": 0.8865
+    },
+    "vehicle_map50_95": {
+      "mean": 0.6018,
+      "std": 0.0078,
+      "min": 0.59,
+      "max": 0.6118
+    },
+    "person_map50": {
+      "mean": 0.7687,
+      "std": 0.0251,
+      "min": 0.7344,
+      "max": 0.7905
+    },
+    "person_map50_95": {
+      "mean": 0.4887,
+      "std": 0.0199,
+      "min": 0.4633,
+      "max": 0.5094
+    }
+  }
+}
