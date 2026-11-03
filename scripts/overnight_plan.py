@@ -554,10 +554,146 @@ def s_L_summary():
     mark("L")
 
 
+NIGHT = PROC + "/night_2cls_clean_v2"
+NIGHTS = NIGHT + "/folds5_grouped_v1"
+
+
+def _names(paths):
+    return {p.replace("\\", "/").rsplit("/", 1)[-1] for p in paths}
+
+
+def _dedup_by_name(lists):
+    """按文件名去重（雾天和夜间共用的 64 张 DAWN 图只保留一次）。"""
+    seen, out = set(), []
+    for lst in lists:
+        for p in lst:
+            n = p.replace("\\", "/").rsplit("/", 1)[-1]
+            if n in seen:
+                continue
+            seen.add(n)
+            out.append(p)
+    return out
+
+
+def s_M_multiwx():
+    """雾+夜 联合五折：一个模型同时覆盖两种恶劣天气。"""
+    exp = OUT + "/m_multiwx_fivefold"
+    if done("M"):
+        return
+    note("== M: 雾+夜 联合五折 ==")
+    ds = PROC + "/multiwx_2cls_v1"
+    if not os.path.exists(ds + "/.built"):
+        os.makedirs(ds + "/folds5_grouped_v1", exist_ok=True)
+        for k in range(1, 6):
+            def rd(root, split):
+                return [l.strip() for l in open("%s/fold%d/%s.txt" % (root, k, split)) if l.strip()]
+            te = _dedup_by_name([rd(FOGS, "test"), rd(NIGHTS, "test")])
+            te_n = _names(te)
+            va = [p for p in _dedup_by_name([rd(FOGS, "val"), rd(NIGHTS, "val")]) if p.split("/")[-1] not in te_n]
+            va_n = _names(va)
+            tr = [p for p in _dedup_by_name([rd(FOGS, "train"), rd(NIGHTS, "train")])
+                  if p.split("/")[-1] not in te_n and p.split("/")[-1] not in va_n]
+            d = "%s/folds5_grouped_v1/fold%d" % (ds, k)
+            os.makedirs(d, exist_ok=True)
+            open(d + "/train.txt", "w").write("\n".join(tr) + "\n")
+            open(d + "/val.txt", "w").write("\n".join(va) + "\n")
+            open(d + "/test.txt", "w").write("\n".join(te) + "\n")
+            open(d + "/data.yaml", "w").write(
+                "path: %s\ntrain: %s/train.txt\nval: %s/val.txt\ntest: %s/test.txt\n"
+                "names:\n  0: vehicle\n  1: person\n" % (d, d, d, d))
+            note("M: fold%d train=%d val=%d test=%d" % (k, len(tr), len(va), len(te)))
+        open(ds + "/.built", "w").write("ok")
+    for k in range(1, 6):
+        y = "%s/folds5_grouped_v1/fold%d/data.yaml" % (ds, k)
+        w = train(y, exp, "fold%d" % k)
+        if w and os.path.exists(w):
+            eval_test(w, y, exp, "fold%d" % k)
+    mark("M")
+
+
+def s_N_final_model():
+    """最终部署模型：全量数据（雾+夜）训练，fold1 的 test 作干净留出。"""
+    exp = OUT + "/n_final_deploy"
+    if done("N"):
+        return
+    note("== N: 最终部署模型（全量雾+夜）==")
+    ds = PROC + "/deploy_2cls_v1"
+    if not os.path.exists(ds + "/.built"):
+        os.makedirs(ds, exist_ok=True)
+        def rd(root, split):
+            return [l.strip() for l in open("%s/fold1/%s.txt" % (root, split)) if l.strip()]
+        hold = _dedup_by_name([rd(FOGS, "test"), rd(NIGHTS, "test")])
+        hold_n = _names(hold)
+        va = [p for p in _dedup_by_name([rd(FOGS, "val"), rd(NIGHTS, "val")]) if p.split("/")[-1] not in hold_n]
+        va_n = _names(va)
+        allimgs = _dedup_by_name([
+            [FOG + "/images/" + n for n in sorted(os.listdir(FOG + "/images"))],
+            [NIGHT + "/images/" + n for n in sorted(os.listdir(NIGHT + "/images"))],
+        ])
+        tr = [p for p in allimgs if p.split("/")[-1] not in hold_n and p.split("/")[-1] not in va_n]
+        open(ds + "/train.txt", "w").write("\n".join(tr) + "\n")
+        open(ds + "/val.txt", "w").write("\n".join(va) + "\n")
+        open(ds + "/test.txt", "w").write("\n".join(hold) + "\n")
+        open(ds + "/data.yaml", "w").write(
+            "path: %s\ntrain: %s/train.txt\nval: %s/val.txt\ntest: %s/test.txt\n"
+            "names:\n  0: vehicle\n  1: person\n" % (ds, ds, ds, ds))
+        open(ds + "/.built", "w").write("ok")
+        note("N: train=%d val=%d holdout=%d" % (len(tr), len(va), len(hold)))
+    y = ds + "/data.yaml"
+    w = train(y, exp, "deploy", extra="epochs=120")
+    if w and os.path.exists(w):
+        eval_test(w, y, exp, "holdout")
+    mark("N")
+
+
+def s_O_export():
+    """导出 ONNX + CPU 延迟基准（边缘设备可运行性证据）。"""
+    exp = OUT + "/n_final_deploy"
+    if done("O"):
+        return
+    note("== O: 导出 ONNX + CPU 延迟基准 ==")
+    best = exp + "/runs/deploy/weights/best.pt"
+    if not os.path.exists(best):
+        note("O: 没有 best.pt，跳过")
+        return
+    code = r'''
+import json, os, time
+from ultralytics import YOLO
+best = "%s"
+out = os.path.dirname(os.path.dirname(best))
+res = {}
+m = YOLO(best)
+for fmt in ("onnx", "openvino"):
+    try:
+        p = m.export(format=fmt, imgsz=640, dynamic=False, simplify=True, half=False)
+        res[fmt] = os.path.getsize(p) / 1e6
+    except Exception as e:
+        res[fmt + "_error"] = repr(e)
+# CPU 延迟（PyTorch CPU）
+import torch
+from PIL import Image
+import numpy as np
+m2 = YOLO(best)
+img = np.asarray(Image.open(sorted(__import__("glob").glob("/data/awod_data/processed/fog_2cls_clean_v1/images/*.jpg"))[0]).convert("RGB").resize((640,640)))
+for _ in range(3): m2.predict(img, device="cpu", verbose=False)
+t0 = time.time(); n = 10
+for _ in range(n): m2.predict(img, device="cpu", verbose=False)
+res["cpu_ms_per_image"] = (time.time() - t0) / n * 1000
+res["params_M"] = sum(p.numel() for p in m2.model.parameters()) / 1e6
+json.dump(res, open(out + "/export_bench.json", "w"), indent=2, ensure_ascii=False)
+print(json.dumps(res, ensure_ascii=False))
+''' % best
+    open("/tmp/_export.py", "w").write(code)
+    sh("%s /tmp/_export.py" % PY)
+    sh("cp %s/export_bench.json %s/reports/ 2>/dev/null || true" % (exp, REPO))
+    mark("O")
+
+
 STAGES = [
     ("A", s_A_dehaze), ("B", s_B_d1), ("C", s_C_d2), ("D", s_D_synth),
     ("E", s_E_b2), ("F", s_F_b3), ("G", s_G_subsets), ("H", s_H_r0),
     ("I", s_I_r1), ("J", s_J_r2), ("K", s_K_r3), ("L", s_L_summary),
+    ("M", s_M_multiwx), ("N", s_N_final_model), ("O", s_O_export),
 ]
 
 
