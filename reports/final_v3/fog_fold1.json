@@ -1,0 +1,16 @@
+{
+  "precision": 0.8893022758149506,
+  "recall": 0.7344693803474747,
+  "map50": 0.8386448095942404,
+  "map50_95": 0.5618082099938391,
+  "per_class_map50": {
+    "vehicle": 0.8813261942264863,
+    "person": 0.7959634249619945
+  },
+  "per_class_map50_95": {
+    "vehicle": 0.5995858764210416,
+    "person": 0.5240305435666368
+  },
+  "weights": "/data/awod_data/exp_v3_plan/m_multiwx_fivefold/runs/fold1/weights/best.pt",
+  "data": "/data/awod_data/processed/fog_2cls_clean_v1/folds5_grouped_v1/fold1/data.yaml"
+}

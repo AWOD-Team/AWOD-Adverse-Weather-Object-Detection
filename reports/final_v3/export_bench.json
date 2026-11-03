@@ -1,0 +1,9 @@
+{
+  "onnx_size_MB": 10.66,
+  "openvino_size_MB": 0.0,
+  "onnx_fp32_size_MB": 10.66,
+  "pt_cpu_ms_per_image": 26.3,
+  "params_M": 2.605,
+  "gflops_640": 6.4,
+  "onnx_cpu_ms_per_image": 29.5
+}

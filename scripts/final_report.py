@@ -45,8 +45,30 @@ def cls(rows, c, key="per_class_map50_95"):
 
 
 # 单域交付基线（来自两份交付包的 test_summary.json）
-fog_base = json.load(open(REPO + "/deliverables/awod_yolo11n_fog5fold_v2/results/test_summary.json"))["aggregate"]
-night_base = json.load(open(REPO + "/deliverables/awod_yolo11n_night5fold_v2/results/test_summary.json"))["aggregate"]
+def base_agg(path):
+    """兼容两种 test_summary.json 结构（fog: summary / night: aggregate）。"""
+    d = json.load(open(path))
+
+    def pick(container, want):
+        for k, v in container.items():
+            kk = k.lower().replace("-", "_").replace("map", "")
+            if want == "50" and "50_95" not in k.lower() and "50" in k:
+                return v
+            if want == "95" and "95" in k:
+                return v
+        raise KeyError(want)
+
+    if "aggregate" in d:
+        a = d["aggregate"]
+        return {"mAP50": a["mAP50"], "mAP50-95": a["mAP50-95"]}
+    s = d["summary"]
+    hi = [v for k, v in s.items() if "95" in k][0]
+    lo = [v for k, v in s.items() if "50" in k and "95" not in k][0]
+    return {"mAP50": lo, "mAP50-95": hi}
+
+
+fog_base = base_agg(REPO + "/deliverables/awod_yolo11n_fog5fold_v2/results/test_summary.json")
+night_base = base_agg(REPO + "/deliverables/awod_yolo11n_night5fold_v2/results/test_summary.json")
 
 d1 = load(O + "/d1_dehaze/test/fold*.json")
 d2 = load(O + "/d2_mixed/test/fold*.json")
