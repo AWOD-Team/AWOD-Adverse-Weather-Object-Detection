@@ -10,14 +10,25 @@ import sys
 from ultralytics import YOLO
 
 w, yaml, out, project, name = sys.argv[1:6]
+
+
+def _l(x):
+    if x is None:
+        return []
+    try:
+        return list(x)
+    except TypeError:
+        return []
+
+
 m = YOLO(w)
 r = m.val(data=yaml, split="test", imgsz=640, batch=16, device=0,
           project=project + "/runs", name=name, exist_ok=True, plots=True, verbose=False)
 b = r.box
 names = r.names or m.names
-idx = list(getattr(b, "ap_class_index", []) or [])
-maps = list(getattr(b, "maps", []) or [])
-ap50 = list(getattr(b, "ap50", []) or [])
+idx = _l(getattr(b, "ap_class_index", None))
+maps = _l(getattr(b, "maps", None))
+ap50 = _l(getattr(b, "ap50", None))
 d = {
     "precision": float(b.mp),
     "recall": float(b.mr),

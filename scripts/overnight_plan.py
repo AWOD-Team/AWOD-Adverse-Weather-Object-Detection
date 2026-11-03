@@ -218,9 +218,10 @@ def s_C_d2():
             open(dst + "/train.txt", "w").write("\n".join(tr + tr_dh) + "\n")
             open(dst + "/val.txt", "w").write("\n".join(val) + "\n")
             open(dst + "/test.txt", "w").write("\n".join(te) + "\n")
+            folds = "%s/folds5_grouped_v1" % mixed
             open(dst + "/data.yaml", "w").write(
                 "path: %s\ntrain: %s/fold%d/train.txt\nval: %s/fold%d/val.txt\ntest: %s/fold%d/test.txt\n"
-                "names:\n  0: vehicle\n  1: person\n" % (base, base, k, base, k, base, k))
+                "names:\n  0: vehicle\n  1: person\n" % (base, folds, k, folds, k, folds, k))
         open(mixed + "/.built", "w").write("ok")
         note("C: 混合数据集构建完成")
     for k in range(1, 6):
@@ -326,9 +327,10 @@ def s_E_b2():
             open(dst + "/train.txt", "w").write("\n".join(tr + extra) + "\n")
             open(dst + "/val.txt", "w").write("\n".join(val) + "\n")
             open(dst + "/test.txt", "w").write("\n".join(te) + "\n")
+            folds = "%s/folds5_grouped_v1" % ds
             open(dst + "/data.yaml", "w").write(
                 "path: %s\ntrain: %s/fold%d/train.txt\nval: %s/fold%d/val.txt\ntest: %s/fold%d/test.txt\n"
-                "names:\n  0: vehicle\n  1: person\n" % (base, base, k, base, k, base, k))
+                "names:\n  0: vehicle\n  1: person\n" % (base, folds, k, folds, k, folds, k))
         open(ds + "/.built", "w").write("ok")
         note("E: B2 数据集构建完成")
     for k in range(1, 6):
