@@ -1,0 +1,15 @@
+{
+  "README.md": 0.0,
+  "aw320_ncnn_model/metadata.yaml": 0.0,
+  "aw320_ncnn_model/model.ncnn.bin": 10.41,
+  "aw320_ncnn_model/model.ncnn.param": 0.02,
+  "aw320_ncnn_model/model_ncnn.py": 0.0,
+  "aw640_ncnn_model/metadata.yaml": 0.0,
+  "aw640_ncnn_model/model.ncnn.bin": 10.49,
+  "aw640_ncnn_model/model.ncnn.param": 0.02,
+  "aw640_ncnn_model/model_ncnn.py": 0.0,
+  "bench_edge.py": 0.0,
+  "manifest.json": 0.0,
+  "yolo11n_aw_320.onnx": 10.54,
+  "yolo11n_aw_416.onnx": 10.57
+}

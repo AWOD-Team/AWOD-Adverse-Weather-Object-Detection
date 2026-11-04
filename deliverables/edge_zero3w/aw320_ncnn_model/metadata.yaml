@@ -1,0 +1,21 @@
+description: Ultralytics YOLO11n model trained on /data/awod_data/processed/deploy_2cls_v1/data.yaml
+author: Ultralytics
+date: '2026-11-04T09:59:49.191472+08:00'
+version: 8.4.175
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+head: Detect
+batch: 1
+imgsz:
+- 320
+- 320
+names:
+  0: vehicle
+  1: person
+args:
+  batch: 1
+  quantize: null
+channels: 3
+end2end: false
