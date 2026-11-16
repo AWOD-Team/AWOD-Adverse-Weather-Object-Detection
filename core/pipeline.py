@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import time
-from typing import Protocol, runtime_checkable
+from typing import Protocol
 
 import numpy as np
 
@@ -9,8 +9,12 @@ from core.dehaze.hybrid_dehaze import HybridDehazer
 from core.detection.yolo_detector import YOLODetector
 
 
+class Dehazer(Protocol):
+    def dehaze(self, img: np.ndarray) -> np.ndarray: ...
+
+
 class AWODPipeline:
-    def __init__(self, yolo_model_path: str, dehazer: HybridDehazer | None = None,
+    def __init__(self, yolo_model_path: str, dehazer: Dehazer | None = None,
                  conf_threshold: float = 0.25, iou_threshold: float = 0.45,
                  enable_dehaze: bool = True):
         self.detector = YOLODetector(yolo_model_path, conf_threshold, iou_threshold)
