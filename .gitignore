@@ -59,6 +59,7 @@ train/yolo11*.pt
 train/results_*.zip
 
 # Data
+/awod_data/
 data/
 datasets/
 images/
