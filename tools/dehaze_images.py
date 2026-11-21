@@ -40,10 +40,12 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, required=True, help="Image file or image directory")
     parser.add_argument("--output", type=Path, required=True, help="New or empty output directory")
-    parser.add_argument("--method", choices=("retinex_bdcp", "dcp"), default="retinex_bdcp")
+    parser.add_argument("--method", choices=("retinex_bdcp", "retinex_dcp_daylight", "dcp"),
+                        default="retinex_bdcp")
     parser.add_argument("--omega", type=float, default=0.95)
-    parser.add_argument("--t0", type=float, default=0.1)
-    parser.add_argument("--local-weight", type=float, default=0.5, help="Retinex illumination fraction")
+    parser.add_argument("--t0", type=float, help="Minimum transmission (standard 0.1, daylight 0.45)")
+    parser.add_argument("--local-weight", type=float,
+                        help="Retinex illumination fraction (standard 0.5, daylight 0.15)")
     parser.add_argument("--bright-gamma", type=float, default=2.0, help="Brightness fusion exponent")
     parser.add_argument("--save-maps", action="store_true", help="Save Retinex-BDCP float32 maps as NPZ")
     args = parser.parse_args(argv)
@@ -54,19 +56,21 @@ def main(argv=None):
         parser.error("Output must be a new or empty directory; existing results are never overwritten")
     if source.is_dir() and (destination == source or source in destination.parents):
         parser.error("Output must be outside the input directory")
-    if args.save_maps and args.method != "retinex_bdcp":
-        parser.error("--save-maps is supported only for retinex_bdcp")
+    if args.save_maps and args.method == "dcp":
+        parser.error("--save-maps requires a Retinex method")
     root = source if source.is_dir() else source.parent
     paths = sorted(p for p in source.rglob("*") if p.is_file() and p.suffix.lower() in EXTENSIONS) \
         if source.is_dir() else [source]
     if not paths or any(p.suffix.lower() not in EXTENSIONS for p in paths):
         parser.error("No supported images found")
-    if args.method == "retinex_bdcp":
+    if args.method != "dcp":
+        mode = "daylight" if args.method == "retinex_dcp_daylight" else "standard"
         model = RetinexBDCP(omega=args.omega, t0=args.t0,
-                            local_weight=args.local_weight, bright_gamma=args.bright_gamma)
+                            local_weight=args.local_weight, bright_gamma=args.bright_gamma,
+                            mode=mode)
         parameters = model.parameters()
     else:
-        model = DarkChannelPrior(omega=args.omega, t0=args.t0)
+        model = DarkChannelPrior(omega=args.omega, t0=0.1 if args.t0 is None else args.t0)
         parameters = {"algorithm": "dcp", **vars(model)}
     report = {"status": "running", "input": str(source), "output": str(destination),
               "parameters": parameters, "numpy": np.__version__, "opencv": cv2.__version__,
@@ -79,7 +83,7 @@ def main(argv=None):
             relative = path.relative_to(root)
             image = read_rgb(path)
             tick = time.perf_counter()
-            if args.method == "retinex_bdcp":
+            if args.method != "dcp":
                 result, details = model.dehaze_with_details(image)
             else:
                 result, details = model.dehaze(image), {}

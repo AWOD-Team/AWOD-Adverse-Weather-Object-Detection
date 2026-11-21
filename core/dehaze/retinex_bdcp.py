@@ -25,6 +25,14 @@ def _adjoint(gx, gy):
     return -_sobel(gx)[0] - _sobel(gy)[1]
 
 
+def _srgb_to_linear(values):
+    return np.where(values <= 0.04045, values / 12.92, ((values + 0.055) / 1.055) ** 2.4)
+
+
+def _linear_to_srgb(values):
+    return np.where(values <= 0.0031308, 12.92 * values, 1.055 * values ** (1 / 2.4) - 0.055)
+
+
 def _smooth_illumination(initial, l2, l1, iterations, tolerance):
     """ADMM for .5||L-L0||² + l2*sum||W*SjL||² + l1*sum||W*SjL||1.
 
@@ -81,14 +89,23 @@ class RetinexBDCP:
 
     local_weight=0 uses DCP's global atmospheric light; 1 uses the Retinex
     illumination map. The default mix is an untrained engineering parameter.
-    All defaults need validation on the existing detection validation split.
+    The daylight mode assumes sRGB input, uses the dark prior and performs
+    transmission estimation and radiance recovery in linear light.
     """
 
-    def __init__(self, omega=0.95, win_size=15, t0=0.1,
-                 scales=(15.0, 80.0, 200.0), local_weight=0.5,
+    def __init__(self, omega=0.95, win_size=15, t0=None,
+                 scales=(15.0, 80.0, 200.0), local_weight=None,
                  light_max_side=256, light_l2=0.2, light_l1=0.02,
                  light_iterations=80, light_tolerance=1e-4,
-                 bright_gamma=2.0, guided_radius=20, guided_eps=1e-3):
+                 bright_gamma=2.0, guided_radius=20, guided_eps=1e-3, *,
+                 mode="standard"):
+        if mode not in ("standard", "daylight"):
+            raise ValueError("mode must be standard or daylight")
+        self.mode = mode
+        if t0 is None:
+            t0 = 0.45 if mode == "daylight" else 0.1
+        if local_weight is None:
+            local_weight = 0.15 if mode == "daylight" else 0.5
         numbers = (omega, t0, local_weight, light_l2, light_l1,
                    light_tolerance, bright_gamma, guided_eps)
         if not all(np.isfinite(v) for v in numbers):
@@ -116,7 +133,8 @@ class RetinexBDCP:
 
     def parameters(self):
         """JSON-serializable configuration for reproducible preprocessing."""
-        return {"algorithm": "retinex_bdcp_v1", "omega": self.dcp.omega,
+        algorithm = "retinex_dcp_daylight_v1" if self.mode == "daylight" else "retinex_bdcp_v1"
+        return {"algorithm": algorithm, "omega": self.dcp.omega,
                 "win_size": self.dcp.win_size, "t0": self.dcp.t0,
                 "scales": list(self.scales), "local_weight": self.local_weight,
                 "light_max_side": self.light_max_side, "light_l2": self.light_l2,
@@ -145,13 +163,17 @@ class RetinexBDCP:
 
     def _transmissions(self, image, light):
         eps = 1.0 / 255.0
-        dark = 1 - self.dcp._dark_channel(image / np.maximum(light, eps))
+        dark = np.clip(1 - self.dcp._dark_channel(image / np.maximum(light, eps)), 0, 1)
+        if self.mode == "daylight":
+            # Bright fog and sky are not reliable cues for choosing the bright prior.
+            zero = np.zeros_like(dark)
+            return dark, zero, zero, 1 - self.dcp.omega + self.dcp.omega * dark
         ratio = (image - light) / np.maximum(1 - light, eps)
         kernel = np.ones((self.dcp.win_size, self.dcp.win_size), dtype=np.uint8)
         bright = cv2.dilate(ratio.max(axis=2), kernel)
         # Each prior is only a local hypothesis; invalid negative estimates
         # must not cancel a valid estimate from the other branch.
-        dark, bright = np.clip(dark, 0, 1), np.clip(bright, 0, 1)
+        bright = np.clip(bright, 0, 1)
         weight = np.max(image, axis=2) ** self.bright_gamma
         fused = (1 - weight) * dark + weight * bright
         # He et al.'s residual-haze factor, applied consistently to both priors.
@@ -184,14 +206,21 @@ class RetinexBDCP:
         local, solver = self._illumination(image)
         atmosphere = self.dcp._atmospheric_light(image, self.dcp._dark_channel(image))
         light = np.clip((1 - self.local_weight) * atmosphere + self.local_weight * local, 0, 1)
+        if self.mode == "daylight":
+            image = _srgb_to_linear(image)
+            light = _srgb_to_linear(light)
+            local = _srgb_to_linear(local)
+            atmosphere = _srgb_to_linear(atmosphere)
         dark, bright, weight, coarse = self._transmissions(image, light)
         refined = self.dcp._guided_refine(image, coarse)
         bound = self._radiance_bound(image, light)
         # Retain omega's small residual-haze margin above the physical bound.
         safe_bound = 1 - self.dcp.omega + self.dcp.omega * bound
         transmission = np.clip(np.maximum(refined, safe_bound), self.dcp.t0, 1)
-        radiance = self._recover(image, light, transmission)
-        output = np.rint(np.clip(radiance, 0, 1) * 255).astype(np.uint8)
+        radiance = np.clip(self._recover(image, light, transmission), 0, 1)
+        if self.mode == "daylight":
+            radiance = _linear_to_srgb(radiance)
+        output = np.rint(radiance * 255).astype(np.uint8)
         details = {"local_illumination": local, "atmospheric_light": atmosphere,
                    "illumination": light, "t_dark": dark, "t_bright": bright,
                    "bright_weight": weight, "t_coarse": coarse, "t_bound": bound,

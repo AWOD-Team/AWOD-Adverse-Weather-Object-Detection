@@ -168,9 +168,12 @@ t=\operatorname{clip}\{\max[t_{guided},1-\omega+\omega b],t_0,1\},
 
 ```bash
 python -m tools.dehaze_images --input /path/to/image.png --output runs/retinex_bdcp_single --save-maps
+python -m tools.dehaze_images --input /path/to/image.png --output runs/retinex_daylight --method retinex_dcp_daylight
 python -m tools.dehaze_images --input /path/to/images --output /path/to/dehazed_run
 python -m tools.dehaze_images --input /path/to/images --output /path/to/dcp_run --method dcp
 ```
+
+白天模式也可用 `RetinexBDCP(mode="daylight")`。它使用暗通道估计透射率，避免把大面积亮雾和天空作为亮通道的权重依据。局部光照权重默认 0.15，透射率下限默认 0.45；按 sRGB 编码假设在线性光域估计透射率和恢复图像，再转换回 sRGB 输出。诊断光照图在该模式下也用线性值表示。默认命令仍对应 Retinex-BDCP 基线。
 
 输出目录必须新建或为空，且不能位于输入目录之下：
 
