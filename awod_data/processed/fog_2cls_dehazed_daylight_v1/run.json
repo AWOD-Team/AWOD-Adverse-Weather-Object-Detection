@@ -1,0 +1,79 @@
+{
+  "source": "fog_2cls_clean_v1",
+  "parameters": {
+    "algorithm": "retinex_dcp_daylight_v1",
+    "omega": 0.95,
+    "win_size": 15,
+    "t0": 0.45,
+    "scales": [
+      15.0,
+      80.0,
+      200.0
+    ],
+    "local_weight": 0.15,
+    "light_max_side": 256,
+    "light_l2": 0.2,
+    "light_l1": 0.02,
+    "light_iterations": 80,
+    "light_tolerance": 0.0001,
+    "bright_gamma": 2.0,
+    "guided_radius": 20,
+    "guided_eps": 0.001
+  },
+  "algorithm_file_sha256": "8320bc8268ec92b189a7052430b169fb01a063efa385c7fcebf6676e4c06b291",
+  "source_split_manifest_sha256": "256d3a1e57a5d2b6a4ec87fa7237360e028d6297b69624be2bb047a7e3590ba5",
+  "git_revision": "29a9fbb31c6861b6778e4e8f66bae999c4d1267e",
+  "opencv": "5.0.0",
+  "numpy": "2.2.6",
+  "encoding": "original filename and extension; JPEG quality 95; EXIF rotation disabled",
+  "images": 2681,
+  "labels": 2681,
+  "fold_entries_verified": 13405,
+  "fold_counts": {
+    "fold1": {
+      "train": 1877,
+      "val": 268,
+      "test": 536
+    },
+    "fold2": {
+      "train": 1876,
+      "val": 268,
+      "test": 537
+    },
+    "fold3": {
+      "train": 1877,
+      "val": 268,
+      "test": 536
+    },
+    "fold4": {
+      "train": 1877,
+      "val": 268,
+      "test": 536
+    },
+    "fold5": {
+      "train": 1877,
+      "val": 268,
+      "test": 536
+    }
+  },
+  "converted_channel_layouts": 3,
+  "illumination_solver": {
+    "converged": 1317,
+    "iteration_limit": 26,
+    "reused": 1338
+  },
+  "elapsed_seconds": 2560.47,
+  "execution": {
+    "backends": [
+      "NumPy CPU",
+      "PyTorch CUDA float64 illumination solver"
+    ],
+    "cross_backend_samples": 10,
+    "cross_backend_rgb_pixel_identical": true,
+    "cross_backend_solver_iterations_identical": true
+  },
+  "verification": {
+    "ultralytics_split_entries_resolved": 13405,
+    "exact_original_label_files": 2681
+  }
+}
