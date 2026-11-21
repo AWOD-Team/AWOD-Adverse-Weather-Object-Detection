@@ -1,0 +1,26 @@
+<annotation>
+  <folder>input</folder>
+  <filename>rain_storm-026.jpg</filename>
+  <path>/home/kenmo/v_ws/OpenLabeling/main/input/rain_storm-026.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>1280</width>
+    <height>851</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>car</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>236</xmin>
+      <ymin>272</ymin>
+      <xmax>1185</xmax>
+      <ymax>574</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+  <folder>input_fog</folder>
+  <filename>foggy-107.jpg</filename>
+  <path>/home/kenmo/v_ws/OpenLabeling/main/input_fog/foggy-107.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>1280</width>
+    <height>1002</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>car</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>758</xmin>
+      <ymin>482</ymin>
+      <xmax>1005</xmax>
+      <ymax>663</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+  <folder>input_fog</folder>
+  <filename>haze-121.jpg</filename>
+  <path>/home/kenmo/v_ws/OpenLabeling/main/input_fog/haze-121.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>1280</width>
+    <height>852</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>car</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>722</xmin>
+      <ymin>354</ymin>
+      <xmax>850</xmax>
+      <ymax>460</ymax>
+    </bndbox>
+  </object>
+</annotation>

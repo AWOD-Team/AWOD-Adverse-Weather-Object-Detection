@@ -1,0 +1,26 @@
+<annotation>
+  <folder>input_sand</folder>
+  <filename>sand_storm-334.jpg</filename>
+  <path>/home/kenmo/v_ws/OpenLabeling/main/input_sand/sand_storm-334.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>1280</width>
+    <height>804</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>car</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>339</xmin>
+      <ymin>521</ymin>
+      <xmax>680</xmax>
+      <ymax>715</ymax>
+    </bndbox>
+  </object>
+</annotation>

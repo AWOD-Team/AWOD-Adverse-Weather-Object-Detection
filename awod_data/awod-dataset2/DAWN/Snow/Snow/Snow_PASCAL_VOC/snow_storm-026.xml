@@ -1,0 +1,26 @@
+<annotation>
+  <folder>input_snow</folder>
+  <filename>snow_storm-026.jpg</filename>
+  <path>/home/kenmo/v_ws/OpenLabeling/main/input_snow/snow_storm-026.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>1280</width>
+    <height>991</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>car</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>598</xmin>
+      <ymin>365</ymin>
+      <xmax>777</xmax>
+      <ymax>474</ymax>
+    </bndbox>
+  </object>
+</annotation>
