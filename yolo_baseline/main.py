@@ -37,10 +37,10 @@ def draw_boxes(img: np.ndarray, detections: list[dict]) -> np.ndarray:
 def main():
     parser = argparse.ArgumentParser(description="YOLO11 baseline detection on adverse weather dataset")
     parser.add_argument("--dataset", type=str,
-                        default=str(Path("G:/leetcode/dataset_built/OTS_selected")),
+                        default=str(Path("G:/AWOD_Dataset/dataset_built/OTS_selected")),
                         help="Path to dataset directory")
     parser.add_argument("--output", type=str,
-                        default=str(Path("G:/leetcode/dataset_built/OTS_selected_yolo_baseline")),
+                        default=str(Path("G:/AWOD_Dataset/dataset_built/OTS_selected_yolo_baseline")),
                         help="Output directory for annotated images and results")
     parser.add_argument("--model", type=str,
                         default=str(Path("F:/yolov11/yolo11n.pt")),

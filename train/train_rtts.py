@@ -16,7 +16,7 @@ VAL_SPLIT = 0.2
 # 数据根目录: 默认本地 Windows 路径, 其他机器用 AWOD_DATASET_ROOT 覆盖
 # 例如 Linux: export AWOD_DATASET_ROOT=/data/awod/datasets
 DATASET_ROOT = Path(os.environ.get("AWOD_DATASET_ROOT",
-                                   "G:/leetcode/dataset_built"))
+                                   "G:/AWOD_Dataset/dataset_built"))
 RTTS_ROOT = DATASET_ROOT / "RTTS"
 CLASSES = ["bicycle", "bus", "car", "motorbike", "person"]
 

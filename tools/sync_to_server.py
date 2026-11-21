@@ -52,7 +52,8 @@ SKIP_DIRS = {".git", ".venv", ".idea", "__pycache__", "runs", "dehaze_result",
              "weighs", "dataset_rtts", "dataset_foggy", "awod_cuda"}
 SKIP_SUFFIX = {".pyc", ".zip", ".lnk"}
 
-DATASET_LOCAL = Path("G:/leetcode/dataset_built")
+DATASET_LOCAL = Path(os.environ.get("AWOD_DATASET_ROOT",
+                                    "G:/AWOD_Dataset/dataset_built"))
 
 # (image dir, label dir) pairs that make up the real fog dataset sent to the
 # server as <remote>/dataset/{images,labels}
@@ -95,7 +96,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--weights", choices=["none", "small", "all"], default="small")
     ap.add_argument("--dataset", action="store_true",
-                    help="also upload G:/leetcode/dataset_built")
+                    help="also upload G:/AWOD_Dataset/dataset_built")
     ap.add_argument("--dataset-smoke", type=int, metavar="N", default=0,
                     help="upload only N images (+labels) per source, for a "
                          "quick pipeline smoke test")
