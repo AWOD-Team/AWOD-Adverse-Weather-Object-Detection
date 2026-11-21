@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>CC_Bing_510.png</filename>
+	<size>
+		<width>640</width>
+		<height>410</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>60</xmin>
+			<ymin>105</ymin>
+			<xmax>290</xmax>
+			<ymax>410</ymax>
+		</bndbox>
+	</object>
+</annotation>

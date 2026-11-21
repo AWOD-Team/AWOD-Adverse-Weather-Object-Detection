@@ -1,0 +1,22 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>QC_Baidu_572.png</filename>
+	<size>
+		<width>960</width>
+		<height>509</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>648</xmin>
+			<ymin>373</ymin>
+			<xmax>820</xmax>
+			<ymax>495</ymax>
+		</bndbox>
+	</object>
+</annotation>

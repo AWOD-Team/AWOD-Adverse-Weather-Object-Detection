@@ -1,0 +1,22 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>XA_Bing_298.png</filename>
+	<size>
+		<width>398</width>
+		<height>352</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>37</xmin>
+			<ymin>129</ymin>
+			<xmax>158</xmax>
+			<ymax>344</ymax>
+		</bndbox>
+	</object>
+</annotation>

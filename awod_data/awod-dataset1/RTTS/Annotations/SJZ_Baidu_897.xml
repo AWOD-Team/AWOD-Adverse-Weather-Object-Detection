@@ -1,0 +1,22 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>SJZ_Baidu_897.png</filename>
+	<size>
+		<width>525</width>
+		<height>466</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>293</xmin>
+			<ymin>59</ymin>
+			<xmax>420</xmax>
+			<ymax>466</ymax>
+		</bndbox>
+	</object>
+</annotation>

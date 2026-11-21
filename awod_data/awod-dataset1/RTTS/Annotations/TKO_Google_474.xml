@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>TKO_Google_474.png</filename>
+	<size>
+		<width>1129</width>
+		<height>648</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>670</xmin>
+			<ymin>442</ymin>
+			<xmax>823</xmax>
+			<ymax>648</ymax>
+		</bndbox>
+	</object>
+</annotation>

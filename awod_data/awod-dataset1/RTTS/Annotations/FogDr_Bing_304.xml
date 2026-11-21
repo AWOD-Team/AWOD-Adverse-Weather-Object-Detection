@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>FogDr_Bing_304.png</filename>
+	<size>
+		<width>780</width>
+		<height>314</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bus</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>504</xmin>
+			<ymin>131</ymin>
+			<xmax>583</xmax>
+			<ymax>226</ymax>
+		</bndbox>
+	</object>
+</annotation>

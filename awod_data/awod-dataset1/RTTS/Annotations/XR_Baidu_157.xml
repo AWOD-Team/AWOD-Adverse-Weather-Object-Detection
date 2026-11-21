@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>XR_Baidu_157.png</filename>
+	<size>
+		<width>490</width>
+		<height>368</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bus</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>116</xmin>
+			<ymin>225</ymin>
+			<xmax>157</xmax>
+			<ymax>280</ymax>
+		</bndbox>
+	</object>
+</annotation>

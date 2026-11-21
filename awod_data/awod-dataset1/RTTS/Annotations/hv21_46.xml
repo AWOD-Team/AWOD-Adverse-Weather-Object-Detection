@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>hv21_46.png</filename>
+	<size>
+		<width>960</width>
+		<height>521</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>67</xmin>
+			<ymin>221</ymin>
+			<xmax>286</xmax>
+			<ymax>393</ymax>
+		</bndbox>
+	</object>
+</annotation>

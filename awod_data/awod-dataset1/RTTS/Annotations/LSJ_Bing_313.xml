@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>LSJ_Bing_313.png</filename>
+	<size>
+		<width>400</width>
+		<height>422</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>73</xmin>
+			<ymin>171</ymin>
+			<xmax>300</xmax>
+			<ymax>421</ymax>
+		</bndbox>
+	</object>
+</annotation>

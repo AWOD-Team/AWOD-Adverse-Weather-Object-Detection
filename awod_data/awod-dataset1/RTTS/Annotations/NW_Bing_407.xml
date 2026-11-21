@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>NW_Bing_407.png</filename>
+	<size>
+		<width>719</width>
+		<height>560</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>255</xmin>
+			<ymin>87</ymin>
+			<xmax>529</xmax>
+			<ymax>463</ymax>
+		</bndbox>
+	</object>
+</annotation>

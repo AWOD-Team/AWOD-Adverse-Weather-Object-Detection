@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>WST_Google_276.png</filename>
+	<size>
+		<width>800</width>
+		<height>591</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>373</xmin>
+			<ymin>269</ymin>
+			<xmax>462</xmax>
+			<ymax>478</ymax>
+		</bndbox>
+	</object>
+</annotation>

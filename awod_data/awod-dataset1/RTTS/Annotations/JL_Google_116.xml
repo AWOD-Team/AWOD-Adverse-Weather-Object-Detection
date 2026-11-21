@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>JL_Google_116.png</filename>
+	<size>
+		<width>997</width>
+		<height>642</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>285</xmin>
+			<ymin>182</ymin>
+			<xmax>721</xmax>
+			<ymax>617</ymax>
+		</bndbox>
+	</object>
+</annotation>

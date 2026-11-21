@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>HEB_Bing_205.png</filename>
+	<size>
+		<width>350</width>
+		<height>412</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>175</xmin>
+			<ymin>207</ymin>
+			<xmax>312</xmax>
+			<ymax>411</ymax>
+		</bndbox>
+	</object>
+</annotation>

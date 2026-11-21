@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>GRCN_Google_346.png</filename>
+	<size>
+		<width>1844</width>
+		<height>1229</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>121</xmin>
+			<ymin>693</ymin>
+			<xmax>256</xmax>
+			<ymax>1082</ymax>
+		</bndbox>
+	</object>
+</annotation>

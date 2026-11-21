@@ -1,0 +1,22 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>SJZ_Bing_085.png</filename>
+	<size>
+		<width>644</width>
+		<height>517</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>326</xmin>
+			<ymin>233</ymin>
+			<xmax>620</xmax>
+			<ymax>517</ymax>
+		</bndbox>
+	</object>
+</annotation>

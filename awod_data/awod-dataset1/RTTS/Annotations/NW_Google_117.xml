@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>NW_Google_117.png</filename>
+	<size>
+		<width>840</width>
+		<height>561</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>62</xmin>
+			<ymin>310</ymin>
+			<xmax>116</xmax>
+			<ymax>470</ymax>
+		</bndbox>
+	</object>
+</annotation>

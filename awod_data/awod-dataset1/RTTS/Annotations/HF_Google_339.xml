@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>HF_Google_339.png</filename>
+	<size>
+		<width>1152</width>
+		<height>648</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bus</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>748</xmin>
+			<ymin>270</ymin>
+			<xmax>860</xmax>
+			<ymax>406</ymax>
+		</bndbox>
+	</object>
+</annotation>

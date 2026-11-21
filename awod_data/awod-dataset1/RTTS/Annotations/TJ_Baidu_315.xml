@@ -1,0 +1,23 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>TJ_Baidu_315.png</filename>
+	<size>
+		<width>690</width>
+		<height>517</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>226</xmin>
+			<ymin>265</ymin>
+			<xmax>367</xmax>
+			<ymax>517</ymax>
+		</bndbox>
+	</object>
+</annotation>

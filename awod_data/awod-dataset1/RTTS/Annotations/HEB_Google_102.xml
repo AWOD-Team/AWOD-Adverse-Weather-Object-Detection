@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>HEB_Google_102.png</filename>
+	<size>
+		<width>391</width>
+		<height>367</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>133</xmin>
+			<ymin>206</ymin>
+			<xmax>275</xmax>
+			<ymax>283</ymax>
+		</bndbox>
+	</object>
+</annotation>

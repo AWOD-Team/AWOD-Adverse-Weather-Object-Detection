@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>HEB_Baidu_815.png</filename>
+	<size>
+		<width>357</width>
+		<height>354</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>276</xmin>
+			<ymin>147</ymin>
+			<xmax>356</xmax>
+			<ymax>354</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>MSK_Baidu_196.png</filename>
+	<size>
+		<width>680</width>
+		<height>382</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>363</xmin>
+			<ymin>156</ymin>
+			<xmax>509</xmax>
+			<ymax>338</ymax>
+		</bndbox>
+	</object>
+</annotation>

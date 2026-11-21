@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>CD_Bing_452.png</filename>
+	<size>
+		<width>891</width>
+		<height>672</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>291</xmin>
+			<ymin>284</ymin>
+			<xmax>717</xmax>
+			<ymax>672</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,23 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>QD_Bing_120.png</filename>
+	<size>
+		<width>452</width>
+		<height>427</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>284</xmin>
+			<ymin>141</ymin>
+			<xmax>365</xmax>
+			<ymax>348</ymax>
+		</bndbox>
+	</object>
+</annotation>

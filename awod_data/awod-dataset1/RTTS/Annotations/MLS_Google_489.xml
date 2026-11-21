@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>MLS_Google_489.png</filename>
+	<size>
+		<width>980</width>
+		<height>551</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>405</xmin>
+			<ymin>7</ymin>
+			<xmax>935</xmax>
+			<ymax>551</ymax>
+		</bndbox>
+	</object>
+</annotation>

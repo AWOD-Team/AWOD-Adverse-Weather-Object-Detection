@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>KRO_Google_539.png</filename>
+	<size>
+		<width>630</width>
+		<height>805</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>202</xmin>
+			<ymin>504</ymin>
+			<xmax>288</xmax>
+			<ymax>772</ymax>
+		</bndbox>
+	</object>
+</annotation>

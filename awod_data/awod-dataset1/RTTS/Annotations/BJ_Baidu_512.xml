@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>BJ_Baidu_512.png</filename>
+	<size>
+		<width>737</width>
+		<height>574</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>528</xmin>
+			<ymin>224</ymin>
+			<xmax>701</xmax>
+			<ymax>552</ymax>
+		</bndbox>
+	</object>
+</annotation>

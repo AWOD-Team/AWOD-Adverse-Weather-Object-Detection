@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>GSGL_Baidu_464.png</filename>
+	<size>
+		<width>690</width>
+		<height>458</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>146</xmin>
+			<ymin>267</ymin>
+			<xmax>233</xmax>
+			<ymax>326</ymax>
+		</bndbox>
+	</object>
+</annotation>
