@@ -1,0 +1,23 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>SJZ_Baidu_159.png</filename>
+	<size>
+		<width>398</width>
+		<height>254</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>206</xmin>
+			<ymin>165</ymin>
+			<xmax>296</xmax>
+			<ymax>227</ymax>
+		</bndbox>
+	</object>
+</annotation>

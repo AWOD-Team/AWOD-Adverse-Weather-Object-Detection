@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>CQ_Google_035.png</filename>
+	<size>
+		<width>753</width>
+		<height>617</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>324</xmin>
+			<ymin>307</ymin>
+			<xmax>485</xmax>
+			<ymax>425</ymax>
+		</bndbox>
+	</object>
+</annotation>

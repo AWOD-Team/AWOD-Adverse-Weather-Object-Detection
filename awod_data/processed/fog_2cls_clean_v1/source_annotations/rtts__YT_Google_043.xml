@@ -1,0 +1,34 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>YT_Google_043.png</filename>
+	<size>
+		<width>640</width>
+		<height>898</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>277</xmin>
+			<ymin>485</ymin>
+			<xmax>382</xmax>
+			<ymax>557</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>224</xmin>
+			<ymin>466</ymin>
+			<xmax>313</xmax>
+			<ymax>534</ymax>
+		</bndbox>
+	</object>
+</annotation>

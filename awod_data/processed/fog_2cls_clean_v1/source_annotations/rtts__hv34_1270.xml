@@ -1,0 +1,22 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>hv34_1270.png</filename>
+	<size>
+		<width>896</width>
+		<height>504</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>281</xmin>
+			<ymin>235</ymin>
+			<xmax>389</xmax>
+			<ymax>342</ymax>
+		</bndbox>
+	</object>
+</annotation>

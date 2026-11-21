@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>TJ_Baidu_225.png</filename>
+	<size>
+		<width>680</width>
+		<height>416</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bus</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>264</xmin>
+			<ymin>247</ymin>
+			<xmax>467</xmax>
+			<ymax>338</ymax>
+		</bndbox>
+	</object>
+</annotation>

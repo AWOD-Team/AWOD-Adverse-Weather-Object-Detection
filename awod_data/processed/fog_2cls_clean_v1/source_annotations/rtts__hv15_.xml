@@ -1,0 +1,34 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>hv15_.png</filename>
+	<size>
+		<width>896</width>
+		<height>504</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>371</xmin>
+			<ymin>263</ymin>
+			<xmax>484</xmax>
+			<ymax>310</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>184</xmin>
+			<ymin>276</ymin>
+			<xmax>310</xmax>
+			<ymax>315</ymax>
+		</bndbox>
+	</object>
+</annotation>

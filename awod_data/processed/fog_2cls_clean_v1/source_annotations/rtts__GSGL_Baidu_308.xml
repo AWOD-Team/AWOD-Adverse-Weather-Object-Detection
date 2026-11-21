@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>GSGL_Baidu_308.png</filename>
+	<size>
+		<width>427</width>
+		<height>450</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bus</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>177</xmin>
+			<ymin>182</ymin>
+			<xmax>237</xmax>
+			<ymax>264</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>YC_Bing_000.png</filename>
+	<size>
+		<width>850</width>
+		<height>428</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>228</xmin>
+			<ymin>170</ymin>
+			<xmax>402</xmax>
+			<ymax>311</ymax>
+		</bndbox>
+	</object>
+</annotation>

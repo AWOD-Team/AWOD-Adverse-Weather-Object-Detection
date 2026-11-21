@@ -1,0 +1,34 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>hv35_157.png</filename>
+	<size>
+		<width>896</width>
+		<height>504</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>806</xmin>
+			<ymin>207</ymin>
+			<xmax>878</xmax>
+			<ymax>269</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>75</xmin>
+			<ymin>238</ymin>
+			<xmax>231</xmax>
+			<ymax>288</ymax>
+		</bndbox>
+	</object>
+</annotation>

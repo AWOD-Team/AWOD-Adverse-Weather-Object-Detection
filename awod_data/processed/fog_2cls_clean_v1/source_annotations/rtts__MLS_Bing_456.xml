@@ -1,0 +1,34 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>MLS_Bing_456.png</filename>
+	<size>
+		<width>620</width>
+		<height>349</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>463</xmin>
+			<ymin>310</ymin>
+			<xmax>497</xmax>
+			<ymax>341</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>153</xmin>
+			<ymin>298</ymin>
+			<xmax>206</xmax>
+			<ymax>342</ymax>
+		</bndbox>
+	</object>
+</annotation>

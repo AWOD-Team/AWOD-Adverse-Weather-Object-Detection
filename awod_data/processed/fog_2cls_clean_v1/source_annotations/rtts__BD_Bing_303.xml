@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>BD_Bing_303.png</filename>
+	<size>
+		<width>900</width>
+		<height>510</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>439</xmin>
+			<ymin>249</ymin>
+			<xmax>597</xmax>
+			<ymax>364</ymax>
+		</bndbox>
+	</object>
+</annotation>

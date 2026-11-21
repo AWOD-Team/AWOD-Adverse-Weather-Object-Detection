@@ -1,0 +1,140 @@
+{
+  "images": 2681,
+  "matching_archived_phashes": 2681,
+  "source_counts": {
+    "rtts": 2419,
+    "dawn": 262
+  },
+  "folds": {
+    "1": {
+      "train": {
+        "rtts": 1694,
+        "vehicle_boxes": 18608,
+        "person_boxes": 3758,
+        "person_images": 968,
+        "dawn": 183,
+        "images": 1877
+      },
+      "val": {
+        "rtts": 242,
+        "vehicle_boxes": 2659,
+        "person_boxes": 537,
+        "person_images": 139,
+        "dawn": 26,
+        "images": 268
+      },
+      "test": {
+        "rtts": 483,
+        "vehicle_boxes": 5323,
+        "person_boxes": 1075,
+        "person_images": 276,
+        "dawn": 53,
+        "images": 536
+      }
+    },
+    "2": {
+      "train": {
+        "rtts": 1692,
+        "vehicle_boxes": 18605,
+        "person_boxes": 3761,
+        "person_images": 968,
+        "dawn": 184,
+        "images": 1876
+      },
+      "val": {
+        "rtts": 242,
+        "vehicle_boxes": 2658,
+        "person_boxes": 536,
+        "person_images": 138,
+        "dawn": 26,
+        "images": 268
+      },
+      "test": {
+        "rtts": 485,
+        "vehicle_boxes": 5327,
+        "person_boxes": 1073,
+        "person_images": 277,
+        "dawn": 52,
+        "images": 537
+      }
+    },
+    "3": {
+      "train": {
+        "rtts": 1693,
+        "vehicle_boxes": 18617,
+        "person_boxes": 3763,
+        "person_images": 968,
+        "dawn": 184,
+        "images": 1877
+      },
+      "val": {
+        "rtts": 242,
+        "vehicle_boxes": 2656,
+        "person_boxes": 536,
+        "person_images": 138,
+        "dawn": 26,
+        "images": 268
+      },
+      "test": {
+        "rtts": 484,
+        "vehicle_boxes": 5317,
+        "person_boxes": 1071,
+        "person_images": 277,
+        "dawn": 52,
+        "images": 536
+      }
+    },
+    "4": {
+      "train": {
+        "rtts": 1693,
+        "vehicle_boxes": 18622,
+        "person_boxes": 3759,
+        "person_images": 968,
+        "dawn": 184,
+        "images": 1877
+      },
+      "val": {
+        "rtts": 242,
+        "vehicle_boxes": 2660,
+        "person_boxes": 535,
+        "person_images": 138,
+        "dawn": 26,
+        "images": 268
+      },
+      "test": {
+        "rtts": 484,
+        "vehicle_boxes": 5308,
+        "person_boxes": 1076,
+        "person_images": 277,
+        "dawn": 52,
+        "images": 536
+      }
+    },
+    "5": {
+      "train": {
+        "rtts": 1694,
+        "vehicle_boxes": 18619,
+        "person_boxes": 3758,
+        "person_images": 969,
+        "dawn": 183,
+        "images": 1877
+      },
+      "val": {
+        "rtts": 242,
+        "vehicle_boxes": 2656,
+        "person_boxes": 537,
+        "person_images": 138,
+        "dawn": 26,
+        "images": 268
+      },
+      "test": {
+        "rtts": 483,
+        "vehicle_boxes": 5315,
+        "person_boxes": 1075,
+        "person_images": 276,
+        "dawn": 53,
+        "images": 536
+      }
+    }
+  }
+}

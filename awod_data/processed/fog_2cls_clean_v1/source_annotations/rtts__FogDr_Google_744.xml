@@ -1,0 +1,23 @@
+<annotation verified="yes">
+	<folder>haze_detection</folder>
+	<filename>FogDr_Google_744.png</filename>
+	<size>
+		<width>800</width>
+		<height>450</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>377</xmin>
+			<ymin>237</ymin>
+			<xmax>609</xmax>
+			<ymax>337</ymax>
+		</bndbox>
+	</object>
+</annotation>

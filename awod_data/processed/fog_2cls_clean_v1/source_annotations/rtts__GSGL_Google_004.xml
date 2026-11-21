@@ -1,0 +1,22 @@
+<annotation>
+	<folder>haze_detection</folder>
+	<filename>GSGL_Google_004.png</filename>
+	<size>
+		<width>550</width>
+		<height>309</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>car</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>249</xmin>
+			<ymin>160</ymin>
+			<xmax>323</xmax>
+			<ymax>214</ymax>
+		</bndbox>
+	</object>
+</annotation>

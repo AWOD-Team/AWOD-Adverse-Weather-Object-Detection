@@ -163,8 +163,7 @@ def main():
             raise ValueError(f"Historical counts differ: fold {number} {part}: {differences}")
         audit["folds"].setdefault(number, {})[part] = stats
         if part == "test":
-            config = {"path": destination.as_posix(),
-                      **{key: f"folds5_grouped_v1/fold{number}/{key}.txt" for key in PARTS},
+            config = {**{key: f"{key}.txt" for key in PARTS},
                       "names": CLASSES}
             fold_dir = stage / "folds5_grouped_v1" / f"fold{number}"
             (fold_dir / "data.yaml").write_text(

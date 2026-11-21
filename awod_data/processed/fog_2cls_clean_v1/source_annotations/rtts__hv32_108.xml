@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>hv32_108.png</filename>
+	<size>
+		<width>896</width>
+		<height>504</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>388</xmin>
+			<ymin>237</ymin>
+			<xmax>423</xmax>
+			<ymax>343</ymax>
+		</bndbox>
+	</object>
+</annotation>

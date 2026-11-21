@@ -1,0 +1,23 @@
+<annotation verified="no">
+	<folder>haze_detection</folder>
+	<filename>PL_Google_202.png</filename>
+	<size>
+		<width>1000</width>
+		<height>651</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bicycle</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<inferred>0</inferred>
+		<bndbox>
+			<xmin>735</xmin>
+			<ymin>468</ymin>
+			<xmax>888</xmax>
+			<ymax>620</ymax>
+		</bndbox>
+	</object>
+</annotation>
