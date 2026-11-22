@@ -1,9 +1,10 @@
 """AWOD APIs. Image preprocessing can run without importing Torch/YOLO."""
 
 from core.dehaze import DarkChannelPrior, Retinex, HybridDehazer, RetinexBDCP
+from core.lowlight import LowLightRetinex
 
 __all__ = ["AWODPipeline", "YOLODetector", "DarkChannelPrior", "Retinex",
-           "HybridDehazer", "RetinexBDCP"]
+           "HybridDehazer", "RetinexBDCP", "LowLightRetinex"]
 
 
 def __getattr__(name):
