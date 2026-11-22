@@ -1,0 +1,147 @@
+{
+  "folds": [
+    {
+      "fold": 1,
+      "weights": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\runs\\fog_2cls_dehazed_daylight_v1_20261122\\train\\fold1\\weights\\best.pt",
+      "data": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\awod_data\\processed\\fog_2cls_dehazed_daylight_v1\\folds5_grouped_v1\\fold1\\data.yaml",
+      "precision": 0.8854778399983592,
+      "recall": 0.7389730440001483,
+      "map50": 0.8384553345931998,
+      "map50_95": 0.5499919515123498,
+      "per_class_map50": {
+        "vehicle": 0.8857850348414256,
+        "person": 0.7911256343449738
+      },
+      "per_class_map50_95": {
+        "vehicle": 0.5996992640469895,
+        "person": 0.5002846389777102
+      }
+    },
+    {
+      "fold": 2,
+      "weights": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\runs\\fog_2cls_dehazed_daylight_v1_20261122\\train\\fold2\\weights\\best.pt",
+      "data": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\awod_data\\processed\\fog_2cls_dehazed_daylight_v1\\folds5_grouped_v1\\fold2\\data.yaml",
+      "precision": 0.8595733893184383,
+      "recall": 0.7371466104073146,
+      "map50": 0.8323034700063632,
+      "map50_95": 0.549936374059495,
+      "per_class_map50": {
+        "vehicle": 0.8786980315798817,
+        "person": 0.7859089084328448
+      },
+      "per_class_map50_95": {
+        "vehicle": 0.6024665920568032,
+        "person": 0.49740615606218685
+      }
+    },
+    {
+      "fold": 3,
+      "weights": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\runs\\fog_2cls_dehazed_daylight_v1_20261122\\train\\fold3\\weights\\best.pt",
+      "data": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\awod_data\\processed\\fog_2cls_dehazed_daylight_v1\\folds5_grouped_v1\\fold3\\data.yaml",
+      "precision": 0.8758255103372166,
+      "recall": 0.6982435461991632,
+      "map50": 0.804969304829809,
+      "map50_95": 0.5339555443547958,
+      "per_class_map50": {
+        "vehicle": 0.8764082279633443,
+        "person": 0.7335303816962737
+      },
+      "per_class_map50_95": {
+        "vehicle": 0.59946229759312,
+        "person": 0.4684487911164716
+      }
+    },
+    {
+      "fold": 4,
+      "weights": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\runs\\fog_2cls_dehazed_daylight_v1_20261122\\train\\fold4\\weights\\best.pt",
+      "data": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\awod_data\\processed\\fog_2cls_dehazed_daylight_v1\\folds5_grouped_v1\\fold4\\data.yaml",
+      "precision": 0.8426852345294602,
+      "recall": 0.7191309043234173,
+      "map50": 0.8105245936985384,
+      "map50_95": 0.529825021774124,
+      "per_class_map50": {
+        "vehicle": 0.8742483046814233,
+        "person": 0.7468008827156534
+      },
+      "per_class_map50_95": {
+        "vehicle": 0.5944426193956274,
+        "person": 0.4652074241526206
+      }
+    },
+    {
+      "fold": 5,
+      "weights": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\runs\\fog_2cls_dehazed_daylight_v1_20261122\\train\\fold5\\weights\\best.pt",
+      "data": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\awod_data\\processed\\fog_2cls_dehazed_daylight_v1\\folds5_grouped_v1\\fold5\\data.yaml",
+      "precision": 0.8803577631605224,
+      "recall": 0.747179110933901,
+      "map50": 0.8484020800714484,
+      "map50_95": 0.5624821211140784,
+      "per_class_map50": {
+        "vehicle": 0.8917056766943687,
+        "person": 0.805098483448528
+      },
+      "per_class_map50_95": {
+        "vehicle": 0.6138146563107493,
+        "person": 0.5111495859174074
+      }
+    }
+  ],
+  "aggregate": {
+    "precision": {
+      "mean": 0.8687839474687993,
+      "std": 0.01752284268901275,
+      "min": 0.8426852345294602,
+      "max": 0.8854778399983592,
+      "n": 5
+    },
+    "recall": {
+      "mean": 0.7281346431727889,
+      "std": 0.019595428228218734,
+      "min": 0.6982435461991632,
+      "max": 0.747179110933901,
+      "n": 5
+    },
+    "map50": {
+      "mean": 0.8269309566398717,
+      "std": 0.018534880790603094,
+      "min": 0.804969304829809,
+      "max": 0.8484020800714484,
+      "n": 5
+    },
+    "map50_95": {
+      "mean": 0.5452382025629686,
+      "std": 0.013293684494468421,
+      "min": 0.529825021774124,
+      "max": 0.5624821211140784,
+      "n": 5
+    },
+    "person_per_class_map50": {
+      "mean": 0.7724928581276548,
+      "std": 0.030693850068694774,
+      "min": 0.7335303816962737,
+      "max": 0.805098483448528,
+      "n": 5
+    },
+    "person_per_class_map50_95": {
+      "mean": 0.48849931924527934,
+      "std": 0.020468244543980146,
+      "min": 0.4652074241526206,
+      "max": 0.5111495859174074,
+      "n": 5
+    },
+    "vehicle_per_class_map50": {
+      "mean": 0.8813690551520887,
+      "std": 0.00722488550273144,
+      "min": 0.8742483046814233,
+      "max": 0.8917056766943687,
+      "n": 5
+    },
+    "vehicle_per_class_map50_95": {
+      "mean": 0.6019770858806579,
+      "std": 0.007222335280831624,
+      "min": 0.5944426193956274,
+      "max": 0.6138146563107493,
+      "n": 5
+    }
+  }
+}
