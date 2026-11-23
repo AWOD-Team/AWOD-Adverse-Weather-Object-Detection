@@ -1,0 +1,17 @@
+{
+  "fold": 4,
+  "weights": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\deliverables\\fog_2cls_dehazed_daylight_v1_balanced_dcp_v3_20261123\\train\\fold4\\weights\\best.pt",
+  "data": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\awod_data\\processed\\fog_2cls_dehazed_daylight_v1\\folds5_grouped_v1\\fold4\\data.yaml",
+  "precision": 0.8580472742979683,
+  "recall": 0.7090519094884309,
+  "map50": 0.8110028771218314,
+  "map50_95": 0.527328398209206,
+  "per_class_map50": {
+    "vehicle": 0.87121557958196,
+    "person": 0.7507901746617027
+  },
+  "per_class_map50_95": {
+    "vehicle": 0.5923247510742458,
+    "person": 0.462332045344166
+  }
+}
