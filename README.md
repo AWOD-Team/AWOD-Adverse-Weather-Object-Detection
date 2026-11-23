@@ -3,7 +3,7 @@ Object detection for vehicles and pedestrians under adverse weather conditions u
 
 ## DCP dehazing
 
-`core/dehaze/dcp.py` accepts `uint8` RGB images. It follows the dark-channel
+`DarkChannelPrior` in `core/dehaze/retinex_bdcp.py` accepts `uint8` RGB images. It follows the dark-channel
 prior's atmospheric-light estimate, coarse transmission, and radiance recovery.
 Transmission is refined by default with a fast guided filter (an engineering
 approximation, **not** the 2009 paper's soft matting). To use the paper's

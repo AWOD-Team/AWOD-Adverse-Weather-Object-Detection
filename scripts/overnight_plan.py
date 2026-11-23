@@ -126,7 +126,7 @@ import os,sys,multiprocessing as mp
 import numpy as np
 from PIL import Image
 sys.path.insert(0,"/data/fog_detect")
-from core.dehaze.dcp import DarkChannelPrior
+from core.dehaze import DarkChannelPrior
 SRC="/data/awod_data/processed/fog_2cls_clean_v1/images"
 DST="/data/awod_data/processed/fog_dehazed_2cls_v1/images"
 def work(n):

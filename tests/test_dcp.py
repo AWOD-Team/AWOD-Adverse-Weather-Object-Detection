@@ -1,17 +1,11 @@
 """Focused regression tests for the DCP algorithm (no YOLO dependency)."""
 
-import importlib.util
-from pathlib import Path
 import unittest
 
 import numpy as np
 
 
-MODULE_PATH = Path(__file__).resolve().parents[1] / "core" / "dehaze" / "dcp.py"
-SPEC = importlib.util.spec_from_file_location("awod_dcp", MODULE_PATH)
-MODULE = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(MODULE)
-DarkChannelPrior = MODULE.DarkChannelPrior
+from core.dehaze import DarkChannelPrior
 
 
 class DCPTests(unittest.TestCase):

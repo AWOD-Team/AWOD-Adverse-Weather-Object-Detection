@@ -5,7 +5,7 @@ from typing import Protocol
 
 import numpy as np
 
-from core.dehaze.hybrid_dehaze import HybridDehazer
+from core.dehaze import HybridDehazer
 from core.detection.yolo_detector import YOLODetector
 
 

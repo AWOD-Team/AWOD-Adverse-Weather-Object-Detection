@@ -32,7 +32,7 @@ from PIL import Image
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from core.dehaze.retinex import Retinex  # noqa: E402
+from core.dehaze import Retinex  # noqa: E402
 
 IMG_EXT = {".jpg", ".jpeg", ".png"}
 SESSION_GAP = dt.timedelta(minutes=30)

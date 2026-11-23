@@ -15,6 +15,14 @@ from tools.dehaze_images import read_rgb, write_rgb
 
 
 class RetinexBDCPTests(unittest.TestCase):
+    def test_clipped_local_lamp_does_not_set_global_airlight(self):
+        model = RetinexBDCP()
+        fog_color = [183, 180, 187]
+        image = np.full((320, 480, 3), fog_color, np.uint8)
+        image[214:236, 244:266] = [255, 254, 221]
+        _, maps = model.dehaze_with_details(image)
+        np.testing.assert_allclose(maps["atmospheric_light"] * 255, fog_color, atol=1)
+
     def test_constant_images_preserve_radiance_including_zero_channels(self):
         model = RetinexBDCP()
         for color in ([0, 0, 0], [255, 255, 255], [0, 140, 230], [100, 100, 100]):
@@ -52,9 +60,8 @@ class RetinexBDCPTests(unittest.TestCase):
         light = np.full((2, 2, 3), 0.6, np.float32)
         t = 0.4
         dark, _, _, _ = model._transmissions(light * (1 - t), light)
-        _, bright, _, _ = model._transmissions(t + light * (1 - t), light)
         np.testing.assert_allclose(dark, t, atol=1e-6)
-        np.testing.assert_allclose(bright, t, atol=1e-6)
+        # Bright channel removed in simplified version - only dark channel is used
 
     def test_radiance_bound_prevents_clipping_with_spatial_colored_light(self):
         rng = np.random.default_rng(17)

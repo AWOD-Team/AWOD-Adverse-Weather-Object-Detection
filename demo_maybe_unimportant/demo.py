@@ -5,7 +5,7 @@ from pathlib import Path
 import cv2
 
 from core.pipeline import AWODPipeline
-from core.dehaze.hybrid_dehaze import HybridDehazer
+from core.dehaze import HybridDehazer
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]

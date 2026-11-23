@@ -4,7 +4,7 @@ from pathlib import Path
 import cv2
 
 from core.pipeline import AWODPipeline
-from core.dehaze.hybrid_dehaze import HybridDehazer
+from core.dehaze import HybridDehazer
 
 TARGET_CLASSES = {0: "person", 1: "bicycle", 2: "car", 3: "motorcycle", 5: "bus", 7: "truck"}
 
