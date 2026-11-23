@@ -1,31 +1,34 @@
 {
   "source": "fog_2cls_clean_v1",
   "parameters": {
-    "algorithm": "retinex_dcp_daylight_v1",
+    "algorithm": "balanced_dcp_v3",
+    "reject_local_highlights": true,
     "omega": 0.95,
     "win_size": 15,
-    "t0": 0.45,
+    "t0": 0.3,
     "scales": [
       15.0,
       80.0,
       200.0
     ],
-    "local_weight": 0.15,
+    "local_weight": 0.0,
     "light_max_side": 256,
-    "light_l2": 0.2,
-    "light_l1": 0.02,
-    "light_iterations": 80,
+    "light_l2": 0.1,
+    "light_l1": 0.01,
+    "light_iterations": 40,
     "light_tolerance": 0.0001,
     "bright_gamma": 2.0,
-    "guided_radius": 20,
-    "guided_eps": 0.001
+    "guided_radius": 40,
+    "guided_eps": 0.01
   },
-  "algorithm_file_sha256": "8320bc8268ec92b189a7052430b169fb01a063efa385c7fcebf6676e4c06b291",
+  "mode": "daylight",
+  "algorithm_file_sha256": "e2f21179d2c987df8b303e47f1df6d608fcf3f502e078666f4fdfc4b7bcb0d15",
   "source_split_manifest_sha256": "256d3a1e57a5d2b6a4ec87fa7237360e028d6297b69624be2bb047a7e3590ba5",
-  "git_revision": "29a9fbb31c6861b6778e4e8f66bae999c4d1267e",
+  "git_revision": "fd620c8f605472d1eb5958ee4289a4a318762b55",
   "opencv": "5.0.0",
   "numpy": "2.2.6",
   "encoding": "original filename and extension; JPEG quality 95; EXIF rotation disabled",
+  "status": "complete",
   "images": 2681,
   "labels": 2681,
   "fold_entries_verified": 13405,
@@ -57,23 +60,9 @@
     }
   },
   "converted_channel_layouts": 3,
+  "images_with_changed_bytes": 2681,
   "illumination_solver": {
-    "converged": 1317,
-    "iteration_limit": 26,
-    "reused": 1338
+    "skipped": 2681
   },
-  "elapsed_seconds": 2560.47,
-  "execution": {
-    "backends": [
-      "NumPy CPU",
-      "PyTorch CUDA float64 illumination solver"
-    ],
-    "cross_backend_samples": 10,
-    "cross_backend_rgb_pixel_identical": true,
-    "cross_backend_solver_iterations_identical": true
-  },
-  "verification": {
-    "ultralytics_split_entries_resolved": 13405,
-    "exact_original_label_files": 2681
-  }
+  "elapsed_seconds": 278.13
 }
