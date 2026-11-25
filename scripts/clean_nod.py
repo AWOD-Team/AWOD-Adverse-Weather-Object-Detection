@@ -18,7 +18,11 @@ import numpy as np
 
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--ann-dir', type=Path, default=Path('/data/awod_data/nod_annotations'))
+    local_annotations = (Path(__file__).resolve().parents[1]
+                         / 'awod_data/processed/night_2cls_clean_v2/nod_annotations')
+    p.add_argument('--ann-dir', type=Path,
+                   default=local_annotations if local_annotations.is_dir()
+                   else Path('/data/awod_data/nod_annotations'))
     p.add_argument('--img-root', type=Path, default=Path('/data/awod_data/Nikon750_1280'))
     p.add_argument('--output', type=Path, default=Path('/data/awod_data/processed/nod_2cls_clean_v1'))
     p.add_argument('--min-brightness', type=float, default=10.0)

@@ -1,0 +1,76 @@
+{
+  "seed": 42,
+  "k": 5,
+  "images": 2780,
+  "groups": 59,
+  "val_ratio": 0.125,
+  "groups_policy": "EXIF day / hv video / city-source / dawn sequence + phash",
+  "folds": [
+    {
+      "fold": 1,
+      "train": 1695,
+      "val": 304,
+      "test": 781,
+      "test_groups": 1,
+      "val_groups": 1,
+      "test_src": {
+        "nod": 781
+      }
+    },
+    {
+      "fold": 2,
+      "train": 2047,
+      "val": 393,
+      "test": 340,
+      "test_groups": 21,
+      "val_groups": 1,
+      "test_src": {
+        "nod": 271,
+        "dawn": 30,
+        "rtts": 39
+      }
+    },
+    {
+      "fold": 3,
+      "train": 1943,
+      "val": 271,
+      "test": 566,
+      "test_groups": 2,
+      "val_groups": 1,
+      "test_src": {
+        "nod": 566
+      }
+    },
+    {
+      "fold": 4,
+      "train": 1989,
+      "val": 271,
+      "test": 520,
+      "test_groups": 20,
+      "val_groups": 1,
+      "test_src": {
+        "nod": 496,
+        "rtts": 22,
+        "dawn": 2
+      }
+    },
+    {
+      "fold": 5,
+      "train": 1936,
+      "val": 271,
+      "test": 573,
+      "test_groups": 15,
+      "val_groups": 1,
+      "test_src": {
+        "nod": 555,
+        "rtts": 18
+      }
+    }
+  ],
+  "audit": {
+    "group_leaks": 0,
+    "images_tested_once": 2780,
+    "images_tested_more_than_once": 0,
+    "total_images": 2780
+  }
+}

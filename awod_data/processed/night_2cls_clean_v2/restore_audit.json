@@ -1,0 +1,42 @@
+{
+  "images": 2780,
+  "sources": {
+    "nod": 2669,
+    "dawn": 32,
+    "rtts": 79
+  },
+  "boxes": {
+    "person": 16624,
+    "vehicle": 3507
+  },
+  "fold_entries": 13900,
+  "fold_counts": {
+    "1": {
+      "train": 1695,
+      "val": 304,
+      "test": 781
+    },
+    "2": {
+      "train": 2047,
+      "val": 393,
+      "test": 340
+    },
+    "3": {
+      "train": 1943,
+      "val": 271,
+      "test": 566
+    },
+    "4": {
+      "train": 1989,
+      "val": 271,
+      "test": 520
+    },
+    "5": {
+      "train": 1936,
+      "val": 271,
+      "test": 573
+    }
+  },
+  "nikon_pixels": "1280px long edge regenerated from awod-dataset4 2048px JPEGs",
+  "nikon_annotations": "Official NOD Nikon750 COCO train/val/test"
+}
