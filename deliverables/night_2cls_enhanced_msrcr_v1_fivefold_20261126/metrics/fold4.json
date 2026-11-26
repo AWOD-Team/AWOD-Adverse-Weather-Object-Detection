@@ -1,0 +1,17 @@
+{
+  "fold": 4,
+  "weights": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\deliverables\\night_2cls_enhanced_msrcr_v1_fivefold_20261126\\train\\fold4\\weights\\best.pt",
+  "data": "D:\\dachuang\\AWOD-Adverse-Weather-Object-Detection\\awod_data\\processed\\night_2cls_enhanced_msrcr_v1\\folds5_grouped_v1\\fold4\\data.yaml",
+  "precision": 0.8597774531661386,
+  "recall": 0.5529376652504367,
+  "map50": 0.6607201161896101,
+  "map50_95": 0.4223072469358491,
+  "per_class_map50": {
+    "vehicle": 0.6121973038502122,
+    "person": 0.709242928529008
+  },
+  "per_class_map50_95": {
+    "vehicle": 0.4001429835258956,
+    "person": 0.44447151034580246
+  }
+}
