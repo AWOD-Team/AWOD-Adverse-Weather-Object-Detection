@@ -1,0 +1,65 @@
+{
+  "status": "complete",
+  "source": "night_2cls_clean_v2",
+  "algorithm": "MSRCR (LowLightRetinex)",
+  "preset": "moderate",
+  "parameters": {
+    "scales": [
+      15.0,
+      80.0,
+      250.0
+    ],
+    "gain": 0.5,
+    "midpoint": 128.0,
+    "shadow_rolloff": 20.0,
+    "contrast_stretch": true,
+    "denoise": "mild"
+  },
+  "gaussian_backend": "CUDA FFT separable OpenCV Gaussian kernel, float32, reflect-101",
+  "reference_check": {
+    "samples": 4,
+    "max_uint8_channel_difference": 4,
+    "max_changed_channel_fraction": 1.7e-05
+  },
+  "code_sha256": {
+    "core/lowlight/retinex.py": "228ac9b8133c5a372fc5a52341afddbe7ab97efb2c413cbf7284da418e2dac54",
+    "core/lowlight/__main__.py": "fc7eda34c263f779a8d919a6e586760e381dd96a3f61bdbfbdcd7e06073085e8"
+  },
+  "git_revision": "a945709d3d9a92a29b6a515da7fc1ea3d07fbe88",
+  "image_encoding": "original extension, JPEG quality 95, no EXIF rotation",
+  "opencv": "5.0.0",
+  "numpy": "2.2.6",
+  "torch": "2.13.0+cu126",
+  "images": 2780,
+  "labels": 2780,
+  "converted_channel_layouts": 0,
+  "fold_counts": {
+    "fold1": {
+      "train": 1695,
+      "val": 304,
+      "test": 781
+    },
+    "fold2": {
+      "train": 2047,
+      "val": 393,
+      "test": 340
+    },
+    "fold3": {
+      "train": 1943,
+      "val": 271,
+      "test": 566
+    },
+    "fold4": {
+      "train": 1989,
+      "val": 271,
+      "test": 520
+    },
+    "fold5": {
+      "train": 1936,
+      "val": 271,
+      "test": 573
+    }
+  },
+  "fold_entries_verified": 13900,
+  "elapsed_seconds": 573.77
+}
